@@ -1,0 +1,330 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    overflow-x: hidden;
+}
+.container {
+    position: relative;
+    width: 100%;
+}
+.sidebar {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: #6052ff;
+    overflow-x: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-top-right-radius: 20px; 
+    border-bottom-right-radius: 20px; 
+    z-index: 2;
+}
+.sidebar ul li {
+    width: 100%;
+    list-style: none;
+}
+.sidebar ul li:hover {
+    background: #8A75FF;
+}
+.sidebar ul li:first-child {
+    margin-bottom: 0; /* Loại bỏ margin nếu có */
+    border-bottom: none; /* Nếu có border dưới logo, loại bỏ */
+}
+.sidebar ul li:first-child:hover {
+    background: none;
+}
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebar ul li:last-child {
+    margin-top: auto; /* Đẩy Log Out xuống dưới cùng */
+}
+
+/* Thêm phần CSS cho mục đang active */
+.sidebar ul li a.active {
+    background-color: #7A6BFF ; /* Màu nền cho mục active */
+    color: white; /* Màu chữ cho mục active */
+}
+
+.sidebar ul li a.active .title {
+    font-weight: 700; /* Làm đậm tiêu đề cho mục active */
+}
+
+
+.sidebar ul li a {
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+.sidebar ul li a i {
+    min-width: 60px;
+    font-size: 24px;
+    text-align: center;
+}
+.sidebar .title {
+    padding: 0 10px;
+    font-size: 20px;
+}
+.main {
+    position: absolute;
+    width: calc(100% - 300px);
+    min-height: 100vh;
+    left: 300px;
+    background: #f5f5f5;
+}
+.top-bar {
+    position: fixed;
+    height: 60px;
+    width: calc(100% - 300px);
+    background: #fff;
+	justify-content: flex-end; /* Căn phải các phần tử */
+    align-items: center;
+    display: flex;
+    color: #444;
+    padding: 0 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+.user {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+	border-radius: 20px;
+    object-fit: cover;
+}
+
+.title {
+    padding-top: 80px; /* Thêm khoảng cách trên để không bị che khuất bởi top-bar */
+    margin-left: 20px; /* Thêm khoảng cách trái để phù hợp với không gian */
+}
+
+.title h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 1s ease-out;
+}
+
+.title p {
+    font-size: 16px;
+    color: #777;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 500;
+    opacity: 0.8;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.cards {
+    margin-top: 20px;
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.cards .card {
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+	border-radius: 8px;
+	text-decoration: none; /* Remove default link styling */
+    transition: transform 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+.cards .card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+}
+
+.icon-box {
+    font-size: 40px;
+    color: #444;
+}
+.tables {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr;
+    grid-gap: 20px;
+    align-items: self-start;
+    padding: 0 20px 20px 20px;
+}
+.img-box-small {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.last-test,
+.ads-banner{
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.last-test .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.last-test h2 {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+}
+
+.last-test .btn {
+    padding: 5px 10px;
+    background: #5e50fa;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.test-tables {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.test-tables th,
+.test-tables td {
+    padding: 12px 15px;
+    text-align: center; /* Căn giữa tất cả nội dung trong bảng */
+    border-bottom: 1px solid #ddd;
+}
+
+.test-tables thead {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.test-tables tbody tr:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.test-tables td i {
+    padding: 8px;
+    background-color: #32bea6;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center; /* Căn giữa icon */
+    line-height: 24px;  /* Đảm bảo icon được căn giữa trong vòng tròn */
+}
+
+.test-tables td i:hover {
+    background-color: #27a79b;
+}
+
+.test-tables td {
+    vertical-align: middle; /* Căn giữa nội dung trong các ô */
+}
+
+.fa-eye {
+    background: #32bea6;
+}
+
+@media(max-width:1090px) {
+    .sidebar {
+        width: 60px;
+    }
+    .main {
+        width: calc(100% - 60px);
+        left: 60px;
+    }
+    .top-bar {
+        width: calc(100% - 60px);
+    }
+}
+@media(max-width:860px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tables {
+        grid-template-columns: 1fr;
+    }
+}
+@media(max-width:530px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+    .last-test td:nth-child(3) {
+        display: none;
+    }
+}
+@media(max-width:420px) {
+    .last-test,
+	.ads-banner{
+        font-size: 70%;
+        padding: 10px;
+        min-height: 200px;
+    }
+    .cards,
+    .tables {
+        padding: 10px;
+    }
+    .search input {
+        padding: 0 10px;
+    }
+    .user {
+        width: 40px;
+        height: 40px;
+    }
+}

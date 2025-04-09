@@ -1,0 +1,247 @@
+:root {
+    --text-color: #555454;
+    --primary-purple: #4A3AFF;
+}
+
+button {
+    cursor: pointer;
+}
+
+.signin-container, .signup-container {
+    position: relative;
+    height: 100vh;
+}
+
+.signup-container {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.form-container {
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    position: absolute;  /* Position the form container in the center of the page*/
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    box-shadow: 
+        0 -5px 15px 0 rgba(194, 194, 194, 0.2), /*top shadow*/
+        0 5px 15px 0 rgba(194, 194, 194, 0.2), /*bottom shadow*/
+        5px 0 15px 0 rgba(194, 194, 194, 0.2), /*right shadow*/
+        -5px 0 15px 0 rgba(194, 194, 194, 0.2); /*left shadow*/
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    min-width: 350px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-container form input {
+    width: 90%;
+    height: 45px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    box-sizing: border-box;  /* Include padding in width */
+}
+
+.form-container form .password, .form-container form .password-cf {
+    padding-right: 40px; /* Space for the icon */
+    width: 100%;
+}
+
+.form-container form input:focus {
+    outline: none;
+    border: 2px solid var(--primary-purple);
+}
+
+.form-container p a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.form-header .p1 {
+    font-size: 22px;
+    font-weight: bolder;
+    margin-bottom: 5px;
+    color: var(--primary-purple);
+}
+
+.form-header .p2 {
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.password-container {
+    position: relative;
+    width: 90%;
+}
+
+.toggle-password, .toggle-password-cf {
+    position: absolute;
+    margin-left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.acc-requirement {
+    color: rgb(126, 126, 126);
+    font-size: 15px;
+    padding-left: 50px;
+}
+
+.acc-requirement p{
+    margin: 0;
+}
+
+.acc-requirement ul {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.form-container form button {
+    width: 70%;
+    height: 40px;
+    background-color: var(--primary-purple);
+    color: white;
+    font-size: 17px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+.form-container form button:hover {
+    background-color: #2b18f7;
+}
+
+.form-container p a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 17px;
+}
+
+.form-container p a:hover, .forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* SIGN IN */
+.signin-choices {
+    width: 80%;
+}
+
+.signin-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
+}
+
+.or {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.or hr {
+    border: none;
+    border-top: 1px solid #8a8a8a;
+    flex: 1;
+}
+
+.or span {
+    margin: 0 12px;
+    white-space: nowrap;
+}
+
+.forgot-password {
+    text-decoration: none;
+    color: #8a57dc;
+    font-weight: medium;
+}
+
+/* LOGOUT */
+.logout-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.logout-dialog {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logout-dialog p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.logout-dialog-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.no {
+    background-color: var(--primary-purple);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    height: 40px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    width: 50px;
+}
+
+.yes {
+    background-color: #f7f7f7;
+    color: rgb(48, 48, 48);
+    font-size: 15px;
+    height: 30px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    width: 50px;
+    border: 1px solid #8a8a8a;
+}
+
