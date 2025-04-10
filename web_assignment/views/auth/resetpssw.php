@@ -1,46 +1,12 @@
-<script src="auth/auth.js"></script>
-<script src="auth/dialog.js"></script>
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-$password = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_SESSION['email'];
-    $password = test_input($_POST["password"]);
-    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-    $stmt = $mydatabase->prepare("UPDATE users SET password = ? WHERE email = ?");
-    $stmt->bind_param("ss", $hashed_password, $email);
-
-    if ($stmt->execute()) {
-        session_unset();
-        session_destroy();
-        echo "<script>
-                alert('Password reset successfully! \\nPlease login to continue');
-                window.location.href = 'index.php?page=login';
-                console.log('Password reset successfully!');
-              </script>";
-    } else {
-        echo "<script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    openDialog(['Failed to reset password! Please try again.']);
-                });
-              </script>";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Exam Website</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <?php include("./include/head.php"); ?>
         <link rel="stylesheet" href="./css/auth.css">
         <link rel="stylesheet" href="./css/dialog.css">
     </head>
     <body>
+        <?php include("./views/dialog.php"); ?>
         <div class="signin-container">
             <div class="form-container">
                 <div class="form-header">
@@ -74,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
             </div>
         </div>
-        <script src="auth/auth.js"></script>
-        <script src="auth/dialog.js"></script>
+        <script src="./auth/auth.js"></script>
+        <script src="./auth/dialog.js"></script>
     </body>
 </html>
 

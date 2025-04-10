@@ -1,15 +1,18 @@
 
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $mydatabase = new mysqli("localhost", "root", "", "web");
 if ($mydatabase->connect_error) {
     die("Connection failed: " . $mydatabase->connect_error);
 }
 
-include("helper.php");
-include("./views/auth/dialog.php");
+include __DIR__."/helper.php";
 
 $username_email = $password = "";
-if ($_SERVER["REQUEST_METHOD"] =="POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username_email = test_input($_POST["uname-email"]);
     $password = test_input($_POST["password"]);
 
@@ -18,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows == 0) {
+    if ($result->num_rows === 0) {
         echo "<script>
         document.addEventListener('DOMContentLoaded', function() {
             openDialog(['Your username or email does not exist!', 'Register now']);
@@ -33,14 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
             $_SESSION['user_id'] = $result["user_id"];
             $_SESSION['username'] = $result["username"]; // Store the username in session
             $_SESSION['role'] = $result["role_user"]; // Set the role to 'user' after login
+            echo "<script>console.log('User role: " . $_SESSION['role'] . "');</script>";
             if ($_SESSION['role'] === 'user') {
-                // echo "<script>window.location.href = 'index.php?page=user';</script>";
                 echo "<script>console.log(" . json_encode($_SESSION) . ");</script>";
+                echo "<script>window.location.href = 'index.php?page=home';</script>";
             } else if ($_SESSION['role'] === 'admin') {
-                echo "<script>window.location.href = 'index.php?page=admin';</script>";
+                echo "<script>window.location.href = 'index.php?page=adminDashboard';</script>";
                 echo "<script>console.log(" . json_encode($_SESSION) . ");</script>";
             } else {
-                echo "<script>window.location.href = 'index.php?page=login';</script>";
+                echo "<script>window.location.href = 'index.php?page=sign-in';</script>";
             }
 
    
@@ -55,6 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] =="POST") {
     }
 }
 
-include("./views/auth/sign-in.php");
+include __DIR__."/../views/auth/sign-in.php";
 
 ?>

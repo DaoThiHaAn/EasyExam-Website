@@ -31,7 +31,9 @@ if (session_status() === PHP_SESSION_NONE) {
       <div class="carousel-caption">
             <h5>Prepare. Practice. Excel.</h5>
             <p>Unlock your full potential with expertly designed mock tests and real-time feedback.</p><br>
-            <a class="btn btn-primary" href="index.php?page=sign-in.php">Get Started!</a>
+            <?php if (!isset($_SESSION['role']) || $_SESSION['role'] === 'guest') { ?>
+            <a class="btn btn-primary" href="index.php?page=sign-in">Get Started!</a>
+            <?php } ?>
        </div>
     </div>
     <div class="carousel-item">
@@ -39,7 +41,9 @@ if (session_status() === PHP_SESSION_NONE) {
       <div class="carousel-caption">
             <h5>Anytime, Anywhere Testing</h5>
             <p>Study smart and take your exams from the comfort of your home—on any device.</p><br>
-            <a class="btn btn-primary" href="index.php?page=sign-in.php">Get Started!</a>
+            <?php if (!isset($_SESSION['role']) || $_SESSION['role'] === 'guest') { ?>
+            <a class="btn btn-primary" href="index.php?page=sign-in">Get Started!</a>
+            <?php } ?>
       </div>
     </div>
     <div class="carousel-item">
@@ -47,7 +51,9 @@ if (session_status() === PHP_SESSION_NONE) {
       <div class="carousel-caption">
         <h5>Your Journey to Success Starts Here</h5>
         <p>Join thousands of learners acing their exams with our trusted platform.</p><br>
-        <a class="btn btn-primary" href="index.php?page=sign-in.php">Get Started!</a>
+        <?php if (!isset($_SESSION['role']) || $_SESSION['role'] === 'guest') { ?>
+        <a class="btn btn-primary" href="index.php?page=sign-in">Get Started!</a>
+        <?php } ?>
       </div>
     </div>
   </div>

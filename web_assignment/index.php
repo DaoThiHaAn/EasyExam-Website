@@ -1,19 +1,29 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-    $_SESSION['role'] == 'guest'; 
 }
 
+if (!isset($_SESSION['role'])) {
+    $_SESSION['role'] = 'guest';
+}
+
+echo "<script>console.log('Session: " . $_SESSION['role'] . "');</script>";
+
+$mydatabase = new mysqli("localhost", "root", "", "web");
+if ($mydatabase->connect_error) {
+    die("Connection failed: " . $mydatabase->connect_error);
+}
 
 // Kiểm tra nếu người dùng chưa đăng nhập và trang yêu cầu đăng nhập
 $protectedPages = ['admin_dashboard','user_dashboard', 'profile', 'settings']; // Các trang yêu cầu đăng nhập
 
 $page = isset($_GET['page']) ? $_GET['page'] : 'home';  
 $controllerFile = 'controllers/' . $page . '.php';
+echo "<script>console.log('Controller file: $controllerFile ');</script>";
 
 // Kiểm tra nếu trang yêu cầu đăng nhập nhưng chưa đăng nhập
 if (in_array($page, $protectedPages) && !isset($_SESSION['user_id'])) {
-    die("Access Denied. Please <a href='index.php?page=sign-gin'>log in</a>.");
+    die("Access Denied. Please <a href='index.php?page=sign-in'>Sign In</a>.");
 }
 
 // Kiểm tra quyền truy cập (Ví dụ: chỉ admin mới có thể vào trang quản trị)

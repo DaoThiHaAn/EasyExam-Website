@@ -7,7 +7,9 @@
     </head>
 
     <body>
-    <?php include './include/navbar.php'; ?>
+    <?php 
+    include("./views/dialog.php");
+    include './include/navbar.php'; ?>
     <section class="signin-container">
         <div class="form-container">
             <div class="form-header">
@@ -37,7 +39,8 @@
         </div>
     </section>
 
-    <script src="././js/auth.js"></script>
-    <script src="././js/dialog.js"></script>
+    
+    <script src="./js/auth.js"></script>
+    <script src="./js/dialog.js"></script>
     </body>
 </html>

@@ -1,11 +1,10 @@
 <?php
-$mydatabase = new mysqli("localhost", "root", "", "web");
-if ($mydatabase->connect_error) {
-    die("Connection failed: " . $mydatabase->connect_error);
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
 include("helper.php");
-include("./views/auth/dialog.php");
+include("./views/dialog.php");
 
 $email = $username = $password = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

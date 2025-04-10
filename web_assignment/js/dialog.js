@@ -32,8 +32,7 @@ function openLogoutDialog() {
 }
 
 function confirmLogout() {
-    document.querySelector('.dialog-container').style.display = 'none';
-    window.location.href = "index.php?page=logout";
+    window.location.href = "index.php?page=logout-complete";
 }
 
 function openDeleteDialog() {
