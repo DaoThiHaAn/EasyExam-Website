@@ -12,6 +12,10 @@ background{
 }
 
 /* navbar */
+.navbar {
+	z-index: 999;
+}
+
 .navbar .getstarted {
 	background-color: white !important;
 	margin-left: 30px;
@@ -83,7 +87,7 @@ background{
 
 .navbar-nav .nav-link.active {
 	transform: scale(1.2);
-    color: #6052ff; /* your active color */
+    color: #6052ff;
     font-weight: bold;
 }
 
@@ -173,8 +177,7 @@ background{
 /* footer */
 footer{
     color: #8d8ba7;
-    padding: auto;
-	padding-top: 20px;
+	padding: 20px;
 	font-size: 20px !important;
 }
 
@@ -182,11 +185,26 @@ footer h5{
     color: black;
 }
 
+.footer h5 {
+    margin-top: 0;
+    margin-bottom: 0.2rem;  /* reduce spacing below heading */
+    line-height: 1;
+}
+
+.footer p {
+    margin-bottom: 0.2rem;  /* adjust the bottom margin as needed */
+}
+
 footer #footerImg{
     display: flex;
     flex-direction: column;
     align-items: center;  
     justify-content: center; 
+}
+
+footer #footerImg img{
+	max-height: 80px;
+	margin-bottom: 10px; /* add some space below the image */
 }
 
 hr.dark{

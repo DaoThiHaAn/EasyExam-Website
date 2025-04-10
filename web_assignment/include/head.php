@@ -9,4 +9,5 @@
 <!-- add font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap">
 <link href="./css/home.css" rel="stylesheet">
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://kit.fontawesome.com/e38d7f03e0.js" crossorigin="anonymous"></script>

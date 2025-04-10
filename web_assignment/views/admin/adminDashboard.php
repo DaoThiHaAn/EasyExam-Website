@@ -5,25 +5,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php include '../../include/head.php'; ?>
-    <meta charset="UTF-8">
+	<?php include __DIR__.'/../../include/head.php'; ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/userDashboard.css">
+    <link rel="stylesheet" href="./css/userDashboard.css">
 	<script src="https://kit.fontawesome.com/10749a358e.js" crossorigin="anonymous"></script>
     <title>Admin panel</title>
 </head>
 <body>
-	<?php include '../../include/navbar.php'; ?>
+	<?php include __DIR__.'/../../include/navbar.php'; ?>
     <section class="container">
-	<?php include '../../include/adminSidebar.php'; ?>
+	<?php include __DIR__.'/../../include/adminSidebar.php'; ?>
 
 		
         <div class="main" id="mainContent">
 			<div class="top-bar">
                 <i class="fas fa-bell"></i>
                 <div class="user">
-                    <img src="../../images/pokemonUser.png" alt="User">
+                    <img src="./images/pokemonUser.png" alt="User">
                 </div>
         	</div>
 			<div class="title">
@@ -129,8 +127,8 @@
         </div>
     </section>
 
-	<?php include('../../include/footer.php'); ?>
-	<script src="../../js/userDashboard.js"></script>
+	<?php include __DIR__.'/../../include/footer.php'; ?>
+	<script src="./js/userDashboard.js"></script>
 	
 </body>
 </html>

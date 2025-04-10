@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="./css/dialog.css">
     </head>
     <body>
-        <?php include("./views/dialog.php"); ?>
+        <?php include __DIR__."/../dialog.php"; ?>
         <div class="signin-container">
             <div class="form-container">
                 <div class="form-header">
@@ -40,8 +40,8 @@
                 </form>
             </div>
         </div>
-        <script src="./auth/auth.js"></script>
-        <script src="./auth/dialog.js"></script>
+        <script src="./js/auth.js"></script>
+        <script src="./js/dialog.js"></script>
     </body>
 </html>
 

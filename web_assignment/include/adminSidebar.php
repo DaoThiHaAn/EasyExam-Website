@@ -19,12 +19,6 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'admin';
 <div class="sidebar" id="sidebar">
     <ul>
         <li>
-            <a href="#" class="nav-item" id="toggleSidebar">
-                <i class="fas fa-clinic-medical"></i>
-                <div class="title">Logo</div>
-            </a>
-        </li>
-        <li>
             <a href="index.php?page=admin" class="nav-item <?= ($page === 'admin') ? 'active' : '' ?>">
                 <i class="fas fa-th-large"></i>
                 <div class="title">Dashboard</div>

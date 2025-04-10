@@ -19,6 +19,10 @@ function closeDialog() {
     document.querySelector('.dialog-container').style.display = 'none';
 }
 
+function closeLogoutDialog() {
+    window.location.href = "index.php?page=home";
+}
+
 
 function openLogoutDialog() {
     let contentDiv = document.querySelector('.dialog-body .content');

@@ -1,118 +1,66 @@
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.profile-container {
-    max-width: 600px;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    box-sizing: border-box;
+    font-size: 17px;
+    min-height: 100vh;
 }
 
-.profile-header {
-    text-align: center;
-    margin-bottom: 30px;
-    margin-top: 5px;
+.sidebar {
+    left: 0;
+    overflow-y: auto;  /* add vertical scrolling if content exceeds the available height */
+    min-width: 300px;
+    z-index: 1000;
+    border-right: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+    padding: 1.2rem;
 }
 
-.profile-header h2 {
-    color: #4A3AFF;
+.nav-item.active {
+    background-color: #efe6ff; /* Bootstrap primary color */
 }
 
-.profile-header p {
-    color: #666;
-}
-
-.profile-info {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.profile-info label {
+.nav-item.active a {
+    color: #6052ff; /* Bootstrap primary color */
     font-weight: bold;
-    color: #333;
-    flex: 3;
 }
 
-.profile-info p {
-    margin: 5px 0 0;
-    color: #555;
-    flex:5;
-}
-
-.actions {
-    margin-top: 30px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-
-.actions a {
-    display: inline-block;
-    text-decoration: none;
-    color: white;
-    background-color: #4A3AFF;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 5px;
-}
-
-.actions a:hover {
-    background-color: rgb(144, 105, 244);
-}
-
-.actions .logout {
-    background-color: ghostwhite;
-    border: 1.5px solid #c7c7c7;
-    color: #686666;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.actions .logout:hover {
-    background-color: #333;
-    color: ghostwhite;
-}
-
-.del-btn {
+.offcanvas-toggle {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px; /* default width */
+    height: 40px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    /* Remove border for a cleaner look; adjust if needed */
     border: none;
-    outline: none;
-    background-color: white;
-    color: #6b140a;
-    font-size: 16px;
-    box-sizing: border-box;
-    height: 35px;
-}
-
-.del-btn:hover {
-    background-color: #e74c3c;
+    /* Additional styling */
+    background-color: #6052ff; /* Bootstrap primary color */
     color: white;
-    border-radius: 5px;
-    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.3s ease;
+    z-index: 9999;
 }
 
-@media screen and (max-width: 768px) {
-    .profile-container {
-        padding: 20px;
-        width: 90%;
-    }
+.offcanvas-toggle:hover {
+    width: 60px; /* expands on hover */
+}
 
-   .actions a {
-    font-size: 13px;
-    padding: 5px;
-   }
+.content-area {
+    margin-left: 0;
+}
+
+.delete-btn {
+    max-height: 40px;
+}
+
+.main-row {
+    flex: 1;
+    min-height: 0; /* Allows it to shrink properly if needed */
+}
+
+@media (min-width: 768px) {
 }

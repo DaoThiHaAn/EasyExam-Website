@@ -1,10 +1,10 @@
 <?php
-include("../auth/db_con.php");
-$mydatabase->query("DELETE FROM account WHERE username = '" .$_SESSION['username'] ."';");
+$mydatabase->query("DELETE FROM users WHERE username = '" .$_SESSION['username'] ."';");
 if ($mydatabase->affected_rows > 0) {
     echo "<script>
-    alert('Account deleted successfully!');</script>";
-    include("logout.php");
+    alert('Account deleted successfully!');
+    window.location.href = 'index.php?page=logout-complete';
+    </script>";
 } else {
     echo "<script>
     document.addEventListener('DOMContentLoaded', function() {

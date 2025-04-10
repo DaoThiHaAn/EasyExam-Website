@@ -6,13 +6,8 @@ if (session_status() === PHP_SESSION_NONE) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width,
-initial-scale=1.0">
- <title>My New Website</title>
- <!-- <link rel="stylesheet" href="css/style.css"> -->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<?php include __DIR__."/../include/head.php"; ?> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <script type="text/javascript">
   MathJax = {
     tex: {
@@ -28,42 +23,40 @@ initial-scale=1.0">
 </head>
 
 <body>
+    <?php include __DIR__."/../include/navbar.php"; ?>
     <main>
         <!-- <h2>Welcome to My Website $ u = U_0 \cos(\omega t) \frac{1}{\sqrt{3}} $</h2> -->
         
         
-        <div class="container mt-4">
-    <h4>Chọn bài kiểm tra để xem lịch sử</h4>
-        <div class="mb-3">
-            <label for="testCategory" class="form-label">Chủ đề:</label>
-            <select id="categorySelect" class="form-select">
-                <option value="0">Tất cả</option>
-                <?php 
-                include("models/getCategories.php"); 
-                foreach ($categories as $category): ?>
-                    <option value="<?= htmlspecialchars($category['category_name']) ?>">
-                        <?= htmlspecialchars($category['category_name']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+        <section class="container mt-4">
+            <h4>Choose one test to view history</h4>
+            <div class="mb-3">
+                <label for="testCategory" class="form-label">Category:</label>
+                <select id="categorySelect" class="form-select">
+                    <option value="0">All</option>
+                    <?php 
+                    include("models/getCategories.php"); 
+                    foreach ($categories as $category): ?>
+                        <option value="<?= htmlspecialchars($category['category_name']) ?>">
+                            <?= htmlspecialchars($category['category_name']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
            
-        <div id="questionList" >
-                    <div class="col-md-9">
-                        <h4>Tests
-                            
-                        </h4>
-                        <div class="row" id="product-list"></div>
+            <div id="questionList" >
+                <div class="col-md-9">
+                    <h4>Tests
+                        
+                    </h4>
+                    <div class="row" id="product-list"></div>
 
-                        <div class="paging" id="pagination"></div>
-                    </div>
+                    <div class="paging" id="pagination"></div>
+                </div>
             </div>
-    </div>
+        </section>
 
-        
-        
-        
         
         <main>
             <div class="container mt-4">
@@ -100,7 +93,9 @@ initial-scale=1.0">
 
         
         </main>
+
     </main>
+    <?php include __DIR__."/../include/footer.php"; ?>
 </body>
 
 </html>
