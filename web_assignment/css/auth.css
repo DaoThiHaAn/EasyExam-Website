@@ -14,22 +14,19 @@ button {
 }
 
 .signin-container, .signup-container {
-    position: relative;
-    height: 100vh;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .signup-container {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
 }
 
 .form-container {
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    position: absolute;  /* Position the form container in the center of the page*/
     display: flex;
     flex-direction: column;
     padding-top: 20px;

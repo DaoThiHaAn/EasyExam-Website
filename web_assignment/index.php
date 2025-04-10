@@ -1,6 +1,7 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+    $_SESSION['role'] == 'guest'; 
 }
 
 
@@ -12,7 +13,7 @@ $controllerFile = 'controllers/' . $page . '.php';
 
 // Kiểm tra nếu trang yêu cầu đăng nhập nhưng chưa đăng nhập
 if (in_array($page, $protectedPages) && !isset($_SESSION['user_id'])) {
-    die("Access Denied. Please <a href='index.php?page=login'>log in</a>.");
+    die("Access Denied. Please <a href='index.php?page=sign-gin'>log in</a>.");
 }
 
 // Kiểm tra quyền truy cập (Ví dụ: chỉ admin mới có thể vào trang quản trị)
