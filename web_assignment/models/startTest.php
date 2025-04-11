@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 }
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php?page=login");
+    header("Location: index.php?page=sign-in");
     exit;
 }
 
