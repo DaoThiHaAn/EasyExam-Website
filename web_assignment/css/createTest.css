@@ -1,0 +1,53 @@
+main {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.timer-selects {
+    width: auto;
+    display: flex;
+    gap: 10px;
+    margin-right: 5px;
+}
+
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.question-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px
+}
+
+.card-text.answer {
+    font-style: italic;
+    color: green;
+    font-weight: bold;
+}
+
+.card-text.difficulty {
+    font-style: italic;
+    font-weight: bold;
+    color: gray;
+}
+
+.question-card {
+    background-color: #F3F6FF;
+}
+
+#resultCount, #selectedCount {
+    font-size: 18px;
+    color: #93AAFD;
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}

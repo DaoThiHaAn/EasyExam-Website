@@ -54,29 +54,32 @@ $questionResult = $conn->query($questionQuery);
 $questionsHTML = '';
 if ($questionResult->num_rows > 0) {
     while ($question = $questionResult->fetch_assoc()) {
-        $imageSrc = ($question['picture_link'] == 'none') ? 'default.png' : htmlspecialchars($question['picture_link']);
+        $imageSrc = ($question['picture_link'] == 'none') ? '' : htmlspecialchars($question['picture_link']);
         $question_text = html_entity_decode($question['question_text']);
         $questionsHTML .= '
-        
         <div class="col-md-12 mb-4 product-item">
-            <div class="card h-100 shadow-lg border-0">
-                <img src="' . $imageSrc . '" class="card-img-top" alt="Question Image">
-                <div class="card-body">
-                
+            <div class="question-card card h-100 shadow-sm border-0">'
+            . ($imageSrc != '' ? '<img src="' . $imageSrc . '" class="card-img-top" alt="Question Image">' : '') . '
+                <div class="question-card-body">
                     <h5 class="card-title">' . $question['question_text'] . '</h5>
                     <p class="card-text">A: ' . htmlspecialchars($question['option_a']) . '</p>
                     <p class="card-text">B: ' . htmlspecialchars($question['option_b']) . '</p>
                     <p class="card-text">C: ' . htmlspecialchars($question['option_c']) . '</p>
                     <p class="card-text">D: ' . htmlspecialchars($question['option_d']) . '</p>
-                    <p class="card-text">Answer: ' . htmlspecialchars($question['correct_answer']) . '</p>
-                    <p class="card-text">Difficulty: ' . htmlspecialchars($question['difficulty']) . '</p>
-                     <input type="checkbox" class="question-checkbox" data-id="' . $question['question_id'] . '"> Chọn
+                    <p class="card-text answer">Answer: ' . htmlspecialchars($question['correct_answer']) . '</p>
+                    <p class="card-text difficulty">Difficulty: ' . htmlspecialchars($question['difficulty']) . '</p>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" data-id="' . $question['question_id'] . '">
+                        <label class="form-check-label" for="' . $question['question_id'] . '">
+                            Select
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>';
     }
 } else {
-    $questionsHTML = '<p>Không có câu hỏi nào phù hợp.</p>';
+    $questionsHTML = '<p>No questions available!.</p>';
 }
 
 $paginationHTML = '<nav><ul class="pagination justify-content-center mt-4">';
@@ -113,5 +116,8 @@ if ($page < $totalPages) {
 }
 $paginationHTML .= '</ul></nav>';
 
-echo json_encode(["products" => $questionsHTML, "pagination" => $paginationHTML]);
-?>
+echo json_encode([
+    "products"   => $questionsHTML, 
+    "pagination" => $paginationHTML,
+    "total"      => $totalQuestions
+]);?>

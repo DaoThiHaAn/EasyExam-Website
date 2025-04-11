@@ -28,10 +28,10 @@ function sendEmail($to, $subject, $type, $uname = '') :bool {
                 ."X-MSMail-Priority: High\n"
                 ."Importance: High\n";
 
-    if ($type=='welcom')
-        $message = "<h2>Welcome to ExamEase!</h2>
+    if ($type==='welcome')
+        $message = "<h2>Welcome to ExamEasy!</h2>
             <p>Hi <b>$uname</b>,</p>
-            <p>Congratulations on joining <b>ExamEase</b> – your ultimate platform for exam preparation and management! You're now part of a learning community that values excellence and efficiency in academics.</p>
+            <p>Congratulations on joining <b>ExamEasy</b> – your ultimate platform for exam preparation and management! You're now part of a learning community that values excellence and efficiency in academics.</p>
 
             <p>Here’s what you can do next:</p>
             <ul>
@@ -44,10 +44,13 @@ function sendEmail($to, $subject, $type, $uname = '') :bool {
 
             <br>
             <p>Wishing you success in all your exams!<br><br>
-                <i>The ExamEase Team</i>
+                <i>The ExamEasy Team</i>
             </p>";
     
-    else if ($type=='reset') {
+    else if ($type==='reset') {
+        // Automatically get the base URL no matter where the folder is
+        $base_url = "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])."/";
+
         $message = " <html>
             <head>
                 <title>Reset Password</title>
@@ -55,7 +58,7 @@ function sendEmail($to, $subject, $type, $uname = '') :bool {
             <body>
                 <h1>Reset Password</h1><br>
                 <p>Click the link below to reset your password:</p>
-                <a href=''>
+                <a href='".$base_url."index.php?page=resetpssw&email=".$to."'>
                     <h3>Reset Password</h3>
                 </a>
             </body>

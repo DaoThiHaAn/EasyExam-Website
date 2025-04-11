@@ -2,5 +2,5 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include './views/admin/adminDashboard.php';
+include __DIR__.'/../views/admin/adminDashboard.php';
 ?>

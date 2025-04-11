@@ -78,13 +78,9 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thống kê lịch sử</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript">
+    <?php include __DIR__."/../include/head.php"; ?>
+    <title>Exam Statistics</title>
+    <script>
         MathJax = {
             tex: {
                 inlineMath: [['$', '$']],
@@ -94,20 +90,22 @@ $conn->close();
     </script>
     <script type="text/javascript" async id="MathJax-script" 
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
+<?php include __DIR__."/../include/navbar.php"; ?>
 <div class="container mt-4">
-    <h2 class="text-center">Lịch sử kết quả cho bài kiểm tra <?php echo htmlspecialchars($test_name); ?></h2>
+    <h2 class="text-center">Exam History</h2>
+    <h3 class="text-center">Test Name: <?php echo htmlspecialchars($test_name); ?></h3>
+    <h4 class="text-center">Test ID: <?php echo htmlspecialchars($test_id); ?></h4>
 
     <?php if (!empty($resultsData)) : ?>
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr>
-                    <th>User Name</th>
+                    <th>Username</th>
                     <th>Score</th>
+                    <th>Duration</th>
                     
                 </tr>
             </thead>
@@ -122,19 +120,20 @@ $conn->close();
             </tbody>
         </table>
     <?php else : ?>
-        <div class="alert alert-warning text-center">Không có kết quả nào cho bài kiểm tra này.</div>
+        <div class="alert alert-warning text-center">No one has taken this test!</div>
     <?php endif; ?>
 </div>
+
 <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h3 class="text-center">Biểu Đồ Điểm Số</h3>
+                <h3 class="text-center">Score Chart</h3>
                 <!-- Biểu đồ -->
                 <canvas id="scoreChart"></canvas>
             </div>
         </div>
-    </div>
-
+</div>
+<?php include __DIR__."/../include/footer.php"; ?>
 </body>
 </html>
 
