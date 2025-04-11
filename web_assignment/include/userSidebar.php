@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="index.php?page=view_question_test">
 						<i class="fa-solid fa-book-open"></i>
                         <div class="title">Exams</div>
                     </a>
@@ -26,9 +26,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="index.php?page=user_history">
 						<i class="fa-solid fa-square-poll-vertical"></i>
-                        <div class="title">Results</div>
+                        <div class="title">History</div>
                     </a>
                 </li>
                 <li>

@@ -14,6 +14,8 @@ initial-scale=1.0">
  <!-- <link rel="stylesheet" href="css/style.css"> -->
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://kit.fontawesome.com/10749a358e.js" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="css/userDashboard.css">
  <script type="text/javascript">
   MathJax = {
     tex: {
@@ -40,41 +42,46 @@ initial-scale=1.0">
             Bạn chưa làm bài kiểm tra nào.
         </div>
     <?php else: ?>
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Tên bài kiểm tra</th>
-                        <th scope="col">Thời gian làm</th>
-                        <th scope="col">Tổng số câu</th>
-                        <th scope="col">Điểm</th>
-                        <th scope="col">Chi tiết</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($history as $entry): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($entry['test_name']) ?></td>
-                            <td><?= date("d/m/Y H:i", strtotime($entry['start_time'])) ?></td>
-                            <td><?= $entry['total_questions'] ?></td>
-                            <td>
-                                <?php if (is_null($entry['score'])): ?>
-                                    <span class="badge bg-warning text-dark">Chưa chấm</span>
-                                <?php else: ?>
-                                    <span class="badge bg-success"><?= $entry['score'] ?>/<?= $entry['total_questions'] ?></span>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <a href="index.php?page=result&result_id=<?= $entry['result_id'] ?>" class="btn btn-sm btn-primary">
-                                    Xem
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
+        <div class="tables">
+				<div class="last-test">
+					<table class="test-tables">
+						<thead>
+							<td>Test</td>
+							<td>Time</td>
+                            <td>Total Questions</td>
+							<td>Point</td>
+							<td>Actions</td>
+						</thead>
+						<tbody>
+                            <?php foreach ($history as $entry): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($entry['test_name']) ?></td>
+                                <td><?= date("d/m/Y H:i", strtotime($entry['start_time'])) ?></td>
+                                <td><?= $entry['total_questions'] ?></td>
+                                <td>
+                                    <?php if (is_null($entry['score'])): ?>
+                                        <span class="badge bg-warning text-dark">Chưa chấm</span>
+                                    <?php else: ?>
+                                        <span class="badge bg-success"><?= $entry['score'] ?>/<?= $entry['total_questions'] ?></span>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <a href="index.php?page=result&result_id=<?= $entry['result_id'] ?>">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+            </div>
+
     <?php endif; ?>
 </div>
 </body>
 </html>
+
+
+
+            

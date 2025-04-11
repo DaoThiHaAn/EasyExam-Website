@@ -108,7 +108,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </section>
     </main>
     <?php include __DIR__.'/../include/footer.php'; ?>
-    <script src="./js/createTest.js"></script>
+    <!-- <script src="./js/createTest.js"></script> -->
 </body>
 </html>
 

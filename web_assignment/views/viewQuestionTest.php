@@ -74,6 +74,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="paging" id="pagination"></div>
                 </div>
             </div>
+
     </div>
     </main>
 
@@ -96,13 +97,6 @@ if (session_status() === PHP_SESSION_NONE) {
     </div>
   </div>
 </div>
-        </div>
-
-        
-        
-        
-        
-        <div class="container mt-4">
 
             <div class="row">
                 <!-- Danh mục -->
@@ -122,23 +116,9 @@ if (session_status() === PHP_SESSION_NONE) {
                     </select>
 
 
-
-
-                    
-                </div>
-
-                <!-- Sản phẩm -->
-                
-            </div>
-        </div>
-
-    </main>
-    <?php include __DIR__."/../include/footer.php"; ?>
-
-
+<?php include __DIR__."/../include/footer.php"; ?>
 </body>
-
-</html>
+         </html>
 
 
 
@@ -150,6 +130,7 @@ if (session_status() === PHP_SESSION_NONE) {
         let selectedQuestionIds = new Set(); // Tập hợp lưu câu hỏi đã chọn
 
         function loadProducts(category = 0, page = 1, search = "", order = "") {
+
 
 
             $.ajax({
@@ -174,6 +155,8 @@ if (session_status() === PHP_SESSION_NONE) {
             currentCategory = $(this).val();
             console.log(currentCategory)
             loadProducts(currentCategory, 1, currentSearch, currentOrder);
+
+
         });
 
         $("#searchInput").on("input", function () {

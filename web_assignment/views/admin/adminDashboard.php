@@ -5,13 +5,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php include __DIR__.'/../../include/head.php'; ?>
+<<<<<<<<< Temporary merge branch 1
 	<?php include 'include/head.php'; ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="./css/userDashboard.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/userDashboard.css">
+=========
+	<?php include __DIR__.'/../../include/head.php'; ?>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./css/userDashboard.css">
+>>>>>>>>> Temporary merge branch 2
 	<script src="https://kit.fontawesome.com/10749a358e.js" crossorigin="anonymous"></script>
     <title>Admin panel</title>
 </head>
