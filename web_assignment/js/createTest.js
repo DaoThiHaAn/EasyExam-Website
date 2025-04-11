@@ -25,10 +25,7 @@ $(document).ready(function () {
         loadQuestions(page);
     });
 
-    $(document).on('change', '.form-check-input', function(){
-        let selectedCount = $('.form-check-input:checked').length;
-        $('#selectedCount span').text(selectedCount);
-    });
+
 
     // Initial load of questions
     loadQuestions();

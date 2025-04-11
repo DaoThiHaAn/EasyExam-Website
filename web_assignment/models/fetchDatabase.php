@@ -69,7 +69,7 @@ if ($questionResult->num_rows > 0) {
                     <p class="card-text answer">Answer: ' . htmlspecialchars($question['correct_answer']) . '</p>
                     <p class="card-text difficulty">Difficulty: ' . htmlspecialchars($question['difficulty']) . '</p>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="' . $question['question_id'] . '">
+                        <input type="checkbox" class="form-check-input" data-id="' . $question['question_id'] . '">
                         <label class="form-check-label" for="' . $question['question_id'] . '">
                             Select
                         </label>

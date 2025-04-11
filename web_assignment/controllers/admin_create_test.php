@@ -29,6 +29,7 @@ include 'views/viewCreatTest.php';
                     let data = JSON.parse(response);
                     $("#product-list").html(data.products);
                     $("#pagination").html(data.pagination);
+                    $('#resultCount span').text(data.total);
                     MathJax.typeset(); // Ép MathJax cập nhật
 
                     // Reset danh sách câu hỏi đã chọn khi đổi danh mục
@@ -45,6 +46,7 @@ include 'views/viewCreatTest.php';
 
         $("#categorySelect").change(function () {
             currentCategory = $(this).val();
+            $('#selectedCount span').text(0);
             loadProducts(currentCategory, 1, currentSearch, currentOrder);
         });
 
@@ -64,31 +66,39 @@ include 'views/viewCreatTest.php';
             loadProducts(currentCategory, 1, currentSearch, currentOrder);
         });
 
-        // Xử lý chọn/bỏ chọn câu hỏi
-        $(document).on("change", ".question-checkbox", function () {
+
+        $(document).on("change", ".form-check-input", function () {
             let questionId = $(this).data("id");
             if ($(this).is(":checked")) {
                 selectedQuestionIds.add(questionId);
             } else {
+                $('#selectedCount span').text(0);
                 selectedQuestionIds.delete(questionId);
             }
+            let selectedCount = selectedQuestionIds.size;
+            $('#selectedCount span').text(selectedCount);
         });
         // Gửi bài kiểm tra vào database
         $("#createTestForm").submit(function (e) {
             e.preventDefault();
+            const h = String(document.getElementById("hours").value).padStart(2, '0');
+            const m = String(document.getElementById("minutes").value).padStart(2, '0');
+            const s = String(document.getElementById("seconds").value).padStart(2, '0');
 
             let testName = $("#testName").val();
-            let testTime = $("#testTime").val();
+            let testTime = `${h}:${m}:${s}`;
             let testCategory = $("#categorySelect").val();
             const userId = <?= isset($_SESSION['user_id']) ? json_encode($_SESSION['user_id']) : 'null' ?>;
             if (!testName || !testTime || selectedQuestionIds.size === 0) {
+                console.log(testCategory);
+                console.log(testName);
+                console.log(testTime);
+                console.log(userId);
+                console.log(selectedQuestionIds)
                 alert("Vui lòng nhập đủ thông tin và chọn ít nhất một câu hỏi!");
                 return;
             }
-            // console.log(testCategory);
-            console.log(testName);
-            console.log(testTime);
-            console.log(userId);
+            
             $.ajax({
                 url: "models/insertTest.php",
                 type: "POST",
@@ -122,7 +132,10 @@ include 'views/viewCreatTest.php';
             }
         });
     }
-
+    $(document).on('change', '.form-check-input', function(){
+        let selectedCount = $('.form-check-input:checked').length;
+        $('#selectedCount span').text(selectedCount);
+    });
 
 
 </script>
