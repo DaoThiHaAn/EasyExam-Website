@@ -5,23 +5,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<?php include __DIR__.'/../../include/head.php'; ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="./css/userDashboard.css">
+
 	<script src="https://kit.fontawesome.com/10749a358e.js" crossorigin="anonymous"></script>
     <title>Admin panel</title>
 </head>
 <body>
-	<?php include __DIR__.'/../../include/navbar.php'; ?>
+
+	
     <section class="container">
-	<?php include __DIR__.'/../../include/adminSidebar.php'; ?>
+	<?php include 'include/adminSidebar.php'; ?>
+
 
 		
         <div class="main" id="mainContent">
 			<div class="top-bar">
                 <i class="fas fa-bell"></i>
                 <div class="user">
-                    <img src="./images/pokemonUser.png" alt="User">
+
+                   <img src="images/pokemonUser.png" alt="User">
+
                 </div>
         	</div>
 			<div class="title">
@@ -127,8 +133,10 @@
         </div>
     </section>
 
+
 	<?php include __DIR__.'/../../include/footer.php'; ?>
 	<script src="./js/userDashboard.js"></script>
+
 	
 </body>
 </html>

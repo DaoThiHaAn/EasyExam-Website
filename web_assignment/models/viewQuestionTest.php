@@ -37,7 +37,7 @@ initial-scale=1.0">
             <select id="categorySelect" class="form-select">
                 <option value="0">Tất cả</option>
                 <?php 
-                include("getCategories.php"); 
+                include("models/getCategories.php"); 
                 foreach ($categories as $category): ?>
                     <option value="<?= htmlspecialchars($category['category_name']) ?>">
                         <?= htmlspecialchars($category['category_name']) ?>
@@ -118,7 +118,7 @@ $(document).ready(function () {
 
 
         $.ajax({
-            url: "getQuestionName.php",
+            url: "models/getQuestionName.php",
             type: "GET",
             data: { category: category, page: page, search: search, order: order },
             success: function (response) {
