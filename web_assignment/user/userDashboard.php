@@ -1,3 +1,10 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include 'models/getHistoryUser.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,68 +60,49 @@
 				<div class="last-test">
                 	<div class="heading">
                     	<h2>Last Tests</h2>
-                    	<a href="./results.png" class="btn">View All</a>
+                    	<a href="index.php?page=user_history" class="btn">View All</a>
                 	</div>
-					<table class="test-tables">
-						<thead>
-							<td>Test</td>
-							<td>Time</td>
-							<td>Point</td>
-							<td>Actions</td>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Math</td>
-								<td>10:05/10-03-2025</td>
-								<td>10</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
-							<tr>
-								<td>English</td>
-								<td>09:00/11-03-2025</td>
-								<td>3</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
-							<tr>
-								<td>Physics</td>
-								<td>15:20/11-03-2025</td>
-								<td>8</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
-							<tr>
-								<td>Physics</td>
-								<td>17:30/14-03-2025</td>
-								<td>6</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
-							<tr>
-								<td>English</td>
-								<td>15:20/18-03-2025</td>
-								<td>10</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
-							<tr>
-								<td>Math</td>
-								<td>20:40/20-03-2025</td>
-								<td>9</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-            </div>
+					<?php if (empty($history)): ?>
+						<div class="alert alert-info text-center">
+							Bạn chưa làm bài kiểm tra nào.
+						</div>
+					<?php else: ?>
+						<div class="tables">
+								<div class="last-test">
+									<table class="test-tables">
+										<thead>
+											<td>Test</td>
+											<td>Time</td>
+											<td>Total Questions</td>
+											<td>Point</td>
+											<td>Actions</td>
+										</thead>
+										<tbody>
+											<?php foreach ($history as $entry): ?>
+											<tr>
+												<td><?= htmlspecialchars($entry['test_name']) ?></td>
+												<td><?= date("d/m/Y H:i", strtotime($entry['start_time'])) ?></td>
+												<td><?= $entry['total_questions'] ?></td>
+												<td>
+													<?php if (is_null($entry['score'])): ?>
+														<span class="badge bg-warning text-dark">Chưa chấm</span>
+													<?php else: ?>
+														<span class="badge bg-success"><?= $entry['score'] ?>/<?= $entry['total_questions'] ?></span>
+													<?php endif; ?>
+												</td>
+												<td>
+													<a href="index.php?page=result&result_id=<?= $entry['result_id'] ?>">
+														<i class="far fa-eye"></i>
+													</a>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+					<?php endif; ?>
 			<div class="affiliate-ad">
     			<p>Affiliates</p>
 			</div>
