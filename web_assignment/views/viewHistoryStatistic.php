@@ -80,6 +80,7 @@ $conn->close();
 <head>
     <?php include __DIR__."/../include/head.php"; ?>
     <title>Exam Statistics</title>
+    <link rel="stylesheet" href="css/historyStatistics.css">
     <script>
         MathJax = {
             tex: {
@@ -94,27 +95,38 @@ $conn->close();
 </head>
 <body>
 <?php include __DIR__."/../include/navbar.php"; ?>
-<div class="container mt-4">
-    <h2 class="text-center">Exam History</h2>
-    <h3 class="text-center">Test Name: <?php echo htmlspecialchars($test_name); ?></h3>
-    <h4 class="text-center">Test ID: <?php echo htmlspecialchars($test_id); ?></h4>
+<div class="history-container mt-4">
+    <div class="text-center mb-4">
+        <h2 class="header display-6 fw-bold mb-4">Exam History</h2>
+        <h3 class="tfw-semibold mb-3">Test Name: <?php echo htmlspecialchars($test_name); ?></h3>
+        <h4 class="text-muted mb-5">Test ID: <?php echo htmlspecialchars($test_id); ?></h4>
+    </div>
 
+    <h4 class="table-name mb-3">List of Examinees</h4>
     <?php if (!empty($resultsData)) : ?>
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
+        <table class="table table-bordered table-hover table-striped text-center align-middle">
+            <thead>
                 <tr>
+                    <th class="count"></th>
                     <th>Username</th>
                     <th>Score</th>
+                    <th>Date taken</th>
                     <th>Duration</th>
                     
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($resultsData as $row) : ?>
+                <?php
+                $i = 1;
+                foreach ($resultsData as $row) : ?>
                     <tr>
+                        <td><?php echo $i++; ?></td>
                         <td><?php echo htmlspecialchars($row['username']); ?></td>
                         <td><?php echo htmlspecialchars($row['score']); ?></td>
-                        
+                        <!-- GET DATE TIME -->
+                         <td></td>
+                        <!-- GET DURATION TIME -->
+                         <td></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -124,7 +136,7 @@ $conn->close();
     <?php endif; ?>
 </div>
 
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h3 class="text-center">Score Chart</h3>

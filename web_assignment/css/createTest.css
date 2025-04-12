@@ -4,6 +4,19 @@ main {
     flex-direction: column;
     gap: 30px;
 }
+
+.container h4 {
+    justify-content: center;
+    display: flex;
+    color: #5D5A88;
+}
+
+.first-part {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
 .timer-selects {
     width: auto;
     display: flex;
@@ -16,6 +29,17 @@ main {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-self: center
+}
+
+form input::placeholder {
+    color: rgb(174, 174, 174);
+    font-style: italic;
 }
 
 .question-card-body {
@@ -50,4 +74,20 @@ main {
     display: flex;
     justify-content: center;
     font-weight: bold;
+}
+
+.create-btn {
+    width: 200px;
+    height: 50px;
+    background-color: #5D5A88;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: auto;
+    font-size: large;
+}
+
+.create-btn:hover {
+    background-color: #b2b0ee;
+    transition: background-color 0.3s ease;
 }

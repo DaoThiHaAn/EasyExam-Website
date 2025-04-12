@@ -30,45 +30,45 @@ if (session_status() === PHP_SESSION_NONE) {
                 <div class="card-header">
                     Test Details
                 </div>
+
                 <div class="card-body">
                     <form id="createTestForm">
-                        <div class="mb-4">
-                            <label for="testName" class="form-label">Test Name <span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" id="testName" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label">Test Duration (HH:MM:SS) <span style="color: red;">*</span></label>
-                            <div class="timer-selects">
-                                <input type="number" id="hours" class="form-control" placeholder="HH" min="0" required>
-                                <span>:</span>
-                                <input type="number" id="minutes" class="form-control" placeholder="MM" min="0" max="59" required>
-                                <span>:</span>
-                                <input type="number" id="seconds" class="form-control" placeholder="SS" min="0" max="59" required>
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                                <label for="categorySelect" class="form-label">Test Category <span style="color: red;">*</span> </label>
-                                <select id="categorySelect" class="form-select">
-                                    <option value="0">None</option>
-                                    <?php 
-
-                                    include("models/getCategories.php"); 
-                                    foreach ($categories as $category): ?>
-                                        <option value="<?= htmlspecialchars($category['category_name']) ?>">
-                                            <?= htmlspecialchars($category['category_name']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                        </div>
-
                         <section class="mb-6">
-                            <label class="form-label">Select Questions <span style="color: red;">*</span></label>
-                            <div id="questionList">
                                 <!-- Example of a two-column row: filter sidebar and question list -->
                                 <div class="row">
                                     <!-- Sidebar: Filter section -->
                                     <div class="col-md-3">
+                                    <div class="mb-4">
+                                        <label for="testName" class="form-label">Test Name <span style="color: red;">*</span></label>
+                                        <input type="text" class="form-control" id="testName" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Test Duration (HH:MM:SS) <span style="color: red;">*</span></label>
+                                        <div class="timer-selects">
+                                            <input type="number" id="hours" class="form-control" placeholder="HH" min="0" required>
+                                            <span>:</span>
+                                            <input type="number" id="minutes" class="form-control" placeholder="MM" min="0" max="59" required>
+                                            <span>:</span>
+                                            <input type="number" id="seconds" class="form-control" placeholder="SS" min="0" max="59" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="categorySelect" class="form-label">Test Category <span style="color: red;">*</span> </label>
+                                        <select id="categorySelect" class="form-select">
+                                            <option value="0">None</option>
+                                            <?php 
+
+                                            include("models/getCategories.php"); 
+                                            foreach ($categories as $category): ?>
+                                                <option value="<?= htmlspecialchars($category['category_name']) ?>">
+                                                    <?= htmlspecialchars($category['category_name']) ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+
+                                    <label class="form-label">Select Questions <span style="color: red;">*</span></label>
                                         <div class="bg-light p-3">
                                              <!-- New info section -->
                                             <div id="filterInfo">
@@ -87,6 +87,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                                 <option value="desc">Difficulty: Descending</option>
                                             </select>
                                         </div>
+                                        
                                     </div>
                                     <!-- Main content: Question list -->
                                     <div class="col-md-9">
@@ -99,16 +100,12 @@ if (session_status() === PHP_SESSION_NONE) {
                                 </div>
                             </div>
                         </section>
-                        
-                        
-                        <button type="submit" class="btn btn-success mt-5">Create Test</button>
+                        <button type="submit" class="create-btn">Create Test</button>
                     </form>
                 </div>
-            </div>
         </section>
     </main>
     <?php include __DIR__.'/../include/footer.php'; ?>
-    <!-- <script src="./js/createTest.js"></script> -->
 </body>
 </html>
 

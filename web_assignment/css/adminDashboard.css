@@ -1,0 +1,351 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gamja Flower', sans-serif;
+}
+
+.container {
+    position: relative;
+}
+
+
+/* navbar */
+.logo {
+    width: 65%;
+    display:block; 
+    margin: 0 auto;
+}
+
+
+.navbar-nav a {
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+.navbar-nav .nav-link {
+	color: #8d8ba7;
+}
+.navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
+	color: #6052ff;
+	font-size: larger;
+}
+
+.navbar ul {
+    flex: 1;
+}
+
+.navbar li a.btn, .logout {
+    background-color: #6052ff;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 0.5rem 0.5rem;
+    line-height: 30px; 
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center; 
+    font-size: 22px;
+}
+
+.navbar li button:hover, .logout:hover {
+	background-color: white;
+	color: #6052ff;
+	border: 2px solid #6052ff;
+}
+
+.navbar-toggler {
+	padding: 1px 5px;
+	font-size: 18px;
+	line-height: 0.3;
+	background: #fff;
+}
+
+.nav-item {
+	min-width: 100px;
+}
+
+.navbar-nav .nav-link {
+    transition: transform 0.3s;
+    display: inline-block; /* ensures transform works properly */
+}
+
+.navbar-nav .nav-link:hover {
+    transform: scale(1.2);
+}
+
+.navbar-nav .nav-link.active {
+	transform: scale(1.2);
+    color: #6052ff;
+    font-weight: bold;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    min-height: 100vh;
+    background: #F8F1FF;
+    box-shadow: 4px 0 8px rgba(132, 132, 132, 0.3);
+    padding: 20px 0;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+
+.usermode {
+	display: flex;
+	gap: 15px;
+	font-size: 23px;
+	font-weight: 500px;
+}
+
+.admin-account {
+	width: fit-content;
+    margin: 20px auto;
+    justify-content: center;
+    font-size: 25px;
+    background-color: #e9d5ff33;
+    border-radius: 20%;
+    padding: 10px;
+}
+
+.account:hover {
+	background-color: rgb(213, 213, 255);
+}
+
+.main {
+    position: absolute;
+    width: calc(100% - 300px);
+    min-height: 100vh;
+    left: 300px;
+}
+
+.user {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+.main img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+	border-radius: 20px;
+    object-fit: cover;
+}
+
+.title {
+    padding-top: 80px; /* Thêm khoảng cách trên để không bị che khuất bởi top-bar */
+    margin-left: 20px; /* Thêm khoảng cách trái để phù hợp với không gian */
+}
+
+.title h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeIn 1s ease-out;
+}
+
+.title p {
+    font-size: 16px;
+    color: #777;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 500;
+    opacity: 0.8;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.cards {
+    margin-top: 20px;
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.cards .card {
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+	border-radius: 8px;
+	text-decoration: none; /* Remove default link styling */
+    transition: transform 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+.cards .card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+}
+
+.icon-box {
+    font-size: 40px;
+    color: #444;
+}
+.tables {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr;
+    grid-gap: 20px;
+    align-items: self-start;
+    padding: 0 20px 20px 20px;
+}
+.img-box-small {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.last-test,
+.ads-banner{
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.last-test .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.last-test h2 {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+}
+
+.last-test .btn {
+    padding: 5px 10px;
+    background: #5e50fa;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.test-tables {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.test-tables th,
+.test-tables td {
+    padding: 12px 15px;
+    text-align: center; /* Căn giữa tất cả nội dung trong bảng */
+    border-bottom: 1px solid #ddd;
+}
+
+.test-tables thead {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.test-tables tbody tr:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.test-tables td i {
+    padding: 8px;
+    background-color: #32bea6;
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center; /* Căn giữa icon */
+    line-height: 24px;  /* Đảm bảo icon được căn giữa trong vòng tròn */
+}
+
+.test-tables td i:hover {
+    background-color: #27a79b;
+}
+
+.test-tables td {
+    vertical-align: middle; /* Căn giữa nội dung trong các ô */
+}
+
+.fa-eye {
+    background: #32bea6;
+}
+
+@media(max-width:768px) {
+    .nav-bar nav a {
+        font-size: 17px;
+    }
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tables {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:530px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+    .last-test td:nth-child(3) {
+        display: none;
+    }
+}
+@media(max-width:420px) {
+    .last-test,
+	.ads-banner{
+        font-size: 70%;
+        padding: 10px;
+        min-height: 200px;
+    }
+    .cards,
+    .tables {
+        padding: 10px;
+    }
+    .search input {
+        padding: 0 10px;
+    }
+    .user {
+        width: 40px;
+        height: 40px;
+    }
+}

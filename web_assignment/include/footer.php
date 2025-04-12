@@ -18,7 +18,7 @@
                 <h5>Contact</h5>
                 <hr class="dark">
                 <p>+0123456789</p>
-                <p>contact@gmail.com</p>
+                <p>group1.cc01@gmail.com</p>
                 <p>HCM University of Technology - Vietnam National University</p>
             </div>
         </div>

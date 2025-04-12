@@ -1,0 +1,12 @@
+.account-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cell {
+    max-width: 500px;
+    white-space: normal;         /* Allow normal text wrapping */
+    overflow-wrap: break-word;   /* Break long words if needed */
+    word-break: break-all;   
+}

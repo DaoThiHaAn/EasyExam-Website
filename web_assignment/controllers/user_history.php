@@ -3,6 +3,5 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'views/viewHistoryUser.php';
-
+include 'views/profile/viewHistoryUser.php';
 ?>

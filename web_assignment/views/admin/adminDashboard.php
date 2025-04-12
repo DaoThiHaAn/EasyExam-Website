@@ -5,35 +5,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<<<< Temporary merge branch 1
-	<?php include 'include/head.php'; ?>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="css/userDashboard.css">
-=========
 	<?php include __DIR__.'/../../include/head.php'; ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="./css/userDashboard.css">
->>>>>>>>> Temporary merge branch 2
-	<script src="https://kit.fontawesome.com/10749a358e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/adminDashboard.css">
     <title>Admin panel</title>
 </head>
-<body>
-	<?php include __DIR__.'/../../include/navbar.php'; ?>
-	
-    <section class="container">
-	<?php include __DIR__.'/../../include/adminSidebar.php'; ?>
-	<?php include 'include/adminSidebar.php'; ?>
+<body>	
+    <main class="container">
+		<?php include __DIR__.'/../../include/adminSidebar.php'; ?>
 
 		
         <div class="main" id="mainContent">
-			<div class="top-bar">
-                <i class="fas fa-bell"></i>
-                <div class="user">
-                    <img src="./images/pokemonUser.png" alt="User">
-                    <img src="images/pokemonUser.png" alt="User">
-                </div>
-        	</div>
 			<div class="title">
 				<h1>Admin Dashboard</h1>
 				<p>Welcome back, <b><?= $_SESSION['username'] ?></b></p>
@@ -130,17 +112,10 @@
 					</table>
 				</div>
             </div>
-			<div class="affiliate-ad">
-    			<p>Affiliates</p>
-			</div>
-
         </div>
-    </section>
+    </main>
 
-	<?php include __DIR__.'/../../include/footer.php'; ?>
-	<script src="./js/userDashboard.js"></script>
-	
-	<script src="js/userDashboard.js"></script>
+	<script src="./js/adminDashboard.js"></script>
 	
 </body>
 </html>

@@ -8,23 +8,44 @@ include 'views/viewCreatTest.php';
 ?>
 
 <script>
+    function updateUrlParams(params) {
+        const url = new URL(window.location);
+        Object.keys(params).forEach(key => {
+            if (params[key] !== "" && params[key] !== null) {
+                url.searchParams.set(key, params[key]);
+            } else {
+                url.searchParams.delete(key);
+            }
+        });
+        history.pushState({}, '', url);
+    }
+
+
     $(document).ready(function () {
         let currentCategory = null;
         let currentSearch = "";
         let currentOrder = "";
         let selectedQuestionIds = new Set(); // Tập hợp lưu câu hỏi đã chọn
 
-        function loadProducts(category = null, page = 1, search = "", order = "") {
+        function loadProducts(category = null, pagenum = 1, search = "", order = "") {
             if (category === null || category === "0") {
                 $("#product-list").html("");
                 $("#pagination").html("");
                 return;
             }
 
+            // Update URL parameters
+            updateUrlParams({
+                category: category,
+                search: search,
+                order: order,
+                pagenum: pagenum
+            });
+
             $.ajax({
                 url: "models/fetchDatabase.php",
                 type: "GET",
-                data: { category: category, page: page, search: search, order: order },
+                data: { category: category, pagenum: pagenum, search: search, order: order },
                 success: function (response) {
                     let data = JSON.parse(response);
                     $("#product-list").html(data.products);
@@ -50,10 +71,10 @@ include 'views/viewCreatTest.php';
             loadProducts(currentCategory, 1, currentSearch, currentOrder);
         });
 
-        $(document).on("click", ".page-link", function (e) {
+        $(document).on("click", ".pagenum-link", function (e) {
             e.preventDefault();
-            let page = $(this).data("page");
-            loadProducts(currentCategory, page, currentSearch, currentOrder);
+            let pagenum = $(this).data("pagenum");
+            loadProducts(currentCategory, pagenum, currentSearch, currentOrder);
         });
 
         $("#searchInput").on("input", function () {

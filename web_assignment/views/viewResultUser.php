@@ -1,85 +1,9 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) session_start();
-
-$conn = new mysqli("localhost", "root", "", "web");
-if ($conn->connect_error) die("Kết nối thất bại: " . $conn->connect_error);
-
-
-
-if (!isset($_GET['result_id']) || intval($_GET['result_id']) <= 0) {
-    if (isset($_GET['test_id'])) {
-        $test_id = intval($_GET['test_id']);
-        $user_id = intval($_SESSION['user_id']);
-
-        $findResultSql = "SELECT result_id FROM results WHERE test_id = ? AND user_id = ?";
-        $stmt = $conn->prepare($findResultSql);
-        if (!$stmt) {
-            die("Lỗi prepare SQL: " . $conn->error);
-        }
-        $stmt->bind_param("ii", $test_id, $user_id);
-        $stmt->execute();
-        $res = $stmt->get_result();
-        $found = $res->fetch_assoc();
-
-        if ($found) {
-            $result_id = $found['result_id'];
-        } else {
-            echo "Không tìm thấy kết quả bài làm.haha";
-            exit;
-        }
-    } else {
-        echo "Không tìm thấy kết quả bài làm123";
-        exit;
-    }
-} else {
-    $result_id = intval($_GET['result_id']);
-}
-
-// Lưu vào session nếu muốn sử dụng sau
-$_SESSION['result_id'] = $result_id;
-
-
-// Lấy điểm và tổng số câu hỏi
-$scoreSql = "SELECT COUNT(*) AS total_questions, SUM(rtq.answer = q.correct_answer) AS score
-             FROM result_test_questions rtq
-             JOIN questions q ON rtq.question_id = q.question_id
-             WHERE rtq.result_id = ?";
-$stmt = $conn->prepare($scoreSql);
-$stmt->bind_param("i", $result_id);
-$stmt->execute();
-$scoreResult = $stmt->get_result()->fetch_assoc();
-$score = $scoreResult['score'] ?? 0;
-$total_questions = $scoreResult['total_questions'] ?? 0;
-
-// Lấy chi tiết câu hỏi
-$sql = "SELECT q.question_text, q.option_a, q.option_b, q.option_c, q.option_d,
-               rtq.answer, q.correct_answer
-        FROM result_test_questions rtq
-        JOIN questions q ON rtq.question_id = q.question_id
-        WHERE rtq.result_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $result_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$questions = [];
-while ($row = $result->fetch_assoc()) {
-    $questions[] = $row;
-}
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width,
-initial-scale=1.0">
- <title>Kết quả</title>
- <!-- <link rel="stylesheet" href="css/style.css"> -->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <script type="text/javascript">
+<?php include __DIR__."/../include/head.php"; ?>
+<link rel="stylesheet" href="./css/testReview.css">
+<script type="text/javascript">
   MathJax = {
     tex: {
       inlineMath: [['$', '$']], // Kích hoạt công thức nội dòng với $
@@ -88,19 +12,20 @@ initial-scale=1.0">
   };
 </script>
 <script type="text/javascript" async
-  src="https://polyfill.io/v3/polyfill.min.js?features=es6">
-</script>
-<script type="text/javascript" async
   id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="bg-light">
-<div class="container mt-5">
+<?php include __DIR__.'/../include/navbar.php'; ?>
+<section class="container mt-5">
     <div class="text-center">
         <h2 class="mb-4">🎉 Result of your Test</h2>
+        <h3 class="mb-4">Test Name: <?= htmlspecialchars($test_name) ?></h3>
         <p><strong>Score:</strong> <?= $score ?> / <?= $total_questions ?></p>
+        <!--TODO -->
+        <p><strong>Start time:</strong> <?= $time_taken ?> </p>
+        <p><strong>Finished time:</strong> <?= $time_taken ?> </p>
     </div>
 
     <div class="mt-4">
@@ -114,74 +39,92 @@ initial-scale=1.0">
         </div>
     </div>
 
-    <a href="index.php?page=user" class="btn btn-secondary mt-4">🔙 Back to DashBoard</a>
-</div>
+    <button class="btn back-btn mt-4 mb-5" onclick="window.location.href='index.php?page=profile&tab=test_history'">🔙 Back to Test History</button>
+</section>
+
+<?php include __DIR__.'/../include/footer.php'; ?>
 
 <script>
     const questions = <?= json_encode($questions) ?>;
     const perPage = 5;
     let currentPage = 1;
 
-    function renderTable() {
-        const start = (currentPage - 1) * perPage;
-        const end = start + perPage;
-        const pageQuestions = questions.slice(start, end);
+    function renderReview() {
+        let html = '';
+        const totalPages = Math.ceil(questions.length / perPage);
+        const startIndex = (currentPage - 1) * perPage;
+        const endIndex = startIndex + perPage;
+        const pageQuestions = questions.slice(startIndex, endIndex);
 
-        let html = `
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th style="width: 25%">Question</th>
-                        <th>A</th>
-                        <th>B</th>
-                        <th>C</th>
-                        <th>D</th>
-                        <th>Your Answer</th>
-                        <th>Correct Answer</th>
-                        <th>Result</th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
+        pageQuestions.forEach((q, index) => {
+            // Determine the user's answer and the correct answer
+            const userAnswer = q.answer;
+            const correctAnswer = q.correct_answer;
 
-        pageQuestions.forEach(q => {
-            const isCorrect = q.answer === q.correct_answer;
+            // Helper function to generate each option
+            function getOptionHtml(letter, optionText) {
+                const isUserChoice = (userAnswer === letter);
+                const isCorrect = (correctAnswer === letter);
+                let optionClass = '';
+                let extraText = '';
+
+                if (isUserChoice) {
+                    if (isCorrect) {
+                        optionClass = 'list-group-item-success';
+                    } else {
+                        optionClass = 'list-group-item-danger';
+                        extraText = ` <strong>(Correct: ${correctAnswer})</strong>`;
+                    }
+                }
+                return `<li class="list-group-item ${optionClass}">${letter}. ${optionText}${extraText}</li>`;
+            }
+
             html += `
-                <tr class="${isCorrect ? 'table-success' : 'table-danger'}">
-                    <td>${q.question_text}</td>
-                    <td>A. ${q.option_a}</td>
-                    <td>B. ${q.option_b}</td>
-                    <td>C. ${q.option_c}</td>
-                    <td>D. ${q.option_d}</td>
-                    <td><strong>${q.answer}</strong></td>
-                    <td><strong>${q.correct_answer}</strong></td>
-                    <td>${isCorrect ? '✅ True' : '❌ False'}</td>
-                </tr>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Question ${startIndex + index + 1}</h5>
+                        <p class="card-text">${q.question_text}</p>
+                        <ul class="list-group">
+                            ${getOptionHtml('A', q.option_a)}
+                            ${getOptionHtml('B', q.option_b)}
+                            ${getOptionHtml('C', q.option_c)}
+                            ${getOptionHtml('D', q.option_d)}
+                        </ul>
+                    </div>
+                </div>
             `;
         });
 
-        html += '</tbody></table>';
         document.getElementById('question-table-container').innerHTML = html;
-        document.getElementById('pageInfo').textContent = `Trang ${currentPage} / ${Math.ceil(questions.length / perPage)}`;
-        if (window.MathJax) MathJax.typeset();
+        document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+        
+        // Only show Prev button if currentPage > 1 and Next button if currentPage < totalPages
+        document.getElementById('prevPage').style.display = (currentPage > 1) ? 'inline-block' : 'none';
+        document.getElementById('nextPage').style.display = (currentPage < totalPages) ? 'inline-block' : 'none';
+
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
     }
 
-    document.getElementById('prevPage').addEventListener('click', () => {
+    // Event listeners for pagination buttons
+    document.getElementById('prevPage').addEventListener('click', function(){
         if (currentPage > 1) {
             currentPage--;
-            renderTable();
+            renderReview();
         }
     });
 
-    document.getElementById('nextPage').addEventListener('click', () => {
-        if (currentPage < Math.ceil(questions.length / perPage)) {
+    document.getElementById('nextPage').addEventListener('click', function(){
+        const totalPages = Math.ceil(questions.length / perPage);
+        if (currentPage < totalPages) {
             currentPage++;
-            renderTable();
+            renderReview();
         }
     });
 
-    // Render ban đầu
-    renderTable();
+    // Initial render
+    renderReview();
 </script>
 </body>
 </html>

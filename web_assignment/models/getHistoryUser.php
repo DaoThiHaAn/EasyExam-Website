@@ -18,6 +18,7 @@ $sql = "
     SELECT 
         r.result_id,
         t.test_name,
+        t.test_category,
         t.count AS total_questions,
         r.start_time,
         r.score

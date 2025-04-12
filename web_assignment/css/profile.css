@@ -2,18 +2,25 @@ body {
     display: flex;
     flex-direction: column;
     font-size: 17px;
-    min-height: 100vh;
+    height: 100%;
+    overflow-y: auto;
+
 }
 
 .sidebar {
     left: 0;
     overflow-y: auto;  /* add vertical scrolling if content exceeds the available height */
-    min-width: 300px;
+    min-width: 280px;
     z-index: 1000;
     border-right: 1px solid #dee2e6;
     background-color: #f8f9fa;
     padding: 1.2rem;
 }
+
+.nav-item a {
+    color: #5D5A88 !important;
+}
+
 
 .nav-item.active {
     background-color: #efe6ff; /* Bootstrap primary color */
@@ -23,6 +30,7 @@ body {
     color: #6052ff; /* Bootstrap primary color */
     font-weight: bold;
 }
+
 
 .offcanvas-toggle {
     position: fixed;
@@ -59,8 +67,12 @@ body {
 
 .main-row {
     flex: 1;
-    min-height: 0; /* Allows it to shrink properly if needed */
 }
 
-@media (min-width: 768px) {
+
+@media screen and (max-width: 768px) {
+    .offcanvas.offcanvas-start {
+        min-width: 200px;
+        width: 50% !important;
+    }
 }

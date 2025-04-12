@@ -29,10 +29,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <body>
     <?php include __DIR__."/../include/navbar.php"; ?>
-    <main>
-        <!-- <h2>Welcome to My Website $ u = U_0 \cos(\omega t) \frac{1}{\sqrt{3}} $</h2> -->
-        
-        
+    <main>        
         <div class="container mt-4">
             <h4>Preview Test</h4>
             <div class="mb-3">
@@ -83,15 +80,15 @@ if (session_status() === PHP_SESSION_NONE) {
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="testPreviewModalLabel">Xem trước bài kiểm tra</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        <h5 class="modal-title" id="testPreviewModalLabel">Preview Test</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="testPreviewContent">
         <!-- Nội dung câu hỏi sẽ được chèn vào đây -->
       </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="startTestBtn" data-role="<?= isset($_SESSION['role']) ? $_SESSION['role'] : '' ?>">
-                Làm bài
+                Start
             </button>
         </div>
     </div>
@@ -114,11 +111,13 @@ if (session_status() === PHP_SESSION_NONE) {
                         <option value="asc">Difficulty: Ascending</option>
                         <option value="desc">Difficulty: Descending</option>
                     </select>
+                </div>
+            </div>
 
 
 <?php include __DIR__."/../include/footer.php"; ?>
 </body>
-         </html>
+</html>
 
 
 
@@ -233,7 +232,7 @@ if (session_status() === PHP_SESSION_NONE) {
         } else {
             // Nếu chưa đăng nhập thì thông báo
             alert("Bạn cần đăng nhập để làm bài kiểm tra.");
-            window.location.href = "index.php?page=login";
+            window.location.href = "index.php?page=sign-in";
         }
     });
 

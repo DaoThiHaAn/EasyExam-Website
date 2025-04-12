@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username_email = test_input($_POST["uname-email"]);
     $password = test_input($_POST["password"]);
 
-    $stmt = $mydatabase->prepare("SELECT user_id, username, role_user, password_hash FROM users WHERE username = ? OR email = ?");
+    $stmt = $mydatabase->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
     $stmt->bind_param("ss", $username_email, $username_email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo "<script>console.log('Login successfully!');</script>";
             $_SESSION['user_id'] = $result["user_id"];
             $_SESSION['username'] = $result["username"]; // Store the username in session
+            $_SESSION['email'] = $result["email"]; // Store the email in session
             $_SESSION['role'] = $result["role_user"]; // Set the role to 'user' after login
             echo "<script>console.log('User role: " . $_SESSION['role'] . "');</script>";
             if ($_SESSION['role'] === 'user') {
