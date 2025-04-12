@@ -45,7 +45,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <?php endforeach; ?>
                 </select>
             </div>
-    <h4>Chọn bài kiểm tra</h4>
+    <!-- <h4>Chọn bài kiểm tra</h4>
         <div class="mb-3">
             <label for="testCategory" class="form-label">Chủ đề:</label>
             <select id="categorySelect" class="form-select">
@@ -58,7 +58,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     </option>
                 <?php endforeach; ?>
             </select>
-        </div>
+        </div> -->
 
            
             <div id="questionList" >
@@ -123,39 +123,43 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <script>
     $(document).ready(function () {
-        let currentCategory = 0;
+        // Lấy tham số từ URL nếu có
+        const urlParams = new URLSearchParams(window.location.search);
+        let currentCategory = urlParams.get('category_name') || "0";
         let currentSearch = "";
         let currentOrder = "";
-        let selectedQuestionIds = new Set(); // Tập hợp lưu câu hỏi đã chọn
+        let selectedQuestionIds = new Set();
+
+        // Gán giá trị vào dropdown category nếu có
+        $("#categorySelect").val(currentCategory);
 
         function loadProducts(category = 0, page = 1, search = "", order = "") {
-
-
-
             $.ajax({
                 url: "models/getQuestionName.php",
                 type: "GET",
                 data: { category: category, page: page, search: search, order: order },
                 success: function (response) {
                     let data = JSON.parse(response);
-                    
+
                     $("#product-list").html(data.tests);
                     $("#pagination").html(data.pagination);
-                    MathJax.typeset(); // Ép MathJax cập nhật
+                    MathJax.typeset(); // Làm mới công thức
 
-                    // Reset danh sách câu hỏi đã chọn khi đổi danh mục
                     selectedQuestionIds.clear();
                 }
             });
         }
 
-
+        // Khi chọn lại category thì thay đổi cả URL (không reload)
         $("#categorySelect").change(function () {
             currentCategory = $(this).val();
-            console.log(currentCategory)
+
+            // Cập nhật URL
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set("category_name", currentCategory);
+            window.history.replaceState({}, "", newUrl);
+
             loadProducts(currentCategory, 1, currentSearch, currentOrder);
-
-
         });
 
         $("#searchInput").on("input", function () {

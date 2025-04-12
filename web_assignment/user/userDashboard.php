@@ -2,6 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include 'models/getCategories.php';
 include 'models/getHistoryUser.php';
 ?>
 
@@ -11,7 +12,7 @@ include 'models/getHistoryUser.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/userDashboard.css">
+    <link rel="stylesheet" href="css/adminDashboard.css">
     <title>Admin panel</title>
 </head>
 <body>
@@ -31,31 +32,32 @@ include 'models/getHistoryUser.php';
 				<p>Welcome back, User</p>
 			</div>
             <div class="cards">
-    			<a href="math-test.html" class="card" type="btn">
-        			<div class="card-content">
-            			<div class="card-name">Math test</div>
-        			</div>
-        			<div class="icon-box">
-            			<i class="fa-solid fa-calculator"></i>
-        			</div>
-    			</a>
-    			<a href="english-test.html" class="card" type="btn">
+			<?php foreach ($categories as $categoryRow): 
+				$category = $categoryRow['category_name']; // Lấy tên danh mục
+				$link = "index.php?page=view_question_test&category_name=" . urlencode($category);
+
+				// Gán icon phù hợp
+				$iconClass = "fa-solid fa-book"; // Mặc định
+				if (stripos($category, 'math') !== false) {
+					$iconClass = "fa-solid fa-calculator";
+				} elseif (stripos($category, 'english') !== false) {
+					$iconClass = "fa-solid fa-arrow-down-a-z";
+				} elseif (stripos($category, 'physics') !== false) {
+					$iconClass = "fa-solid fa-atom";
+				}
+			?>
+				<a href="<?= $link ?>" class="card" type="btn">
 					<div class="card-content">
-						<div class="card-name">English Test</div>
+						<div class="card-name"><?= htmlspecialchars($category) ?></div>
 					</div>
 					<div class="icon-box">
-						<i class="fa-solid fa-arrow-down-a-z"></i>
+						<i class="<?= $iconClass ?>"></i>
 					</div>
 				</a>
-				<a href="physics-test.html" class="card" type="btn">
-					<div class="card-content">
-						<div class="card-name">Physics Test</div>
-					</div>
-					<div class="icon-box">
-						<i class="fa-solid fa-atom"></i>
-					</div>
-				</a>
+			<?php endforeach; ?>
+
 			</div>
+
 			<div class="tables">
 				<div class="last-test">
                 	<div class="heading">

@@ -156,42 +156,48 @@ initial-scale=1.0">
 
     // Sự kiện next
     $(document).on("click", "#next-btn", function () {
-        const currentQ = questionsData[currentQuestionIndex];
-        const selectedVal = $("input[name='answer']:checked").val();
-        if (selectedVal) {
-            selectedAnswers[currentQ.question_id] = selectedVal;
-        // console.log(<?= json_encode($_SESSION) ?>);
-        console.log("Gửi về:", {
+    const currentQ = questionsData[currentQuestionIndex];
+    const selectedVal = $("input[name='answer']:checked").val() || ''; // Nếu không chọn thì là chuỗi rỗng
+
+    selectedAnswers[currentQ.question_id] = selectedVal;
+
+    console.log("Gửi về:", {
+        question_id: currentQ.question_id,
+        answer: selectedVal,
+        correct_answer: currentQ.correct_answer
+    });
+
+    // Gửi kết quả về server (dù có chọn hay không)
+    $.ajax({
+        url: "models/saveAnswer.php",
+        type: "POST",
+        data: {
             question_id: currentQ.question_id,
             answer: selectedVal,
             correct_answer: currentQ.correct_answer
-        });
-            // Gửi kết quả về server
-            $.ajax({
-                url: "models/saveAnswer.php",
-                type: "POST",
-                data: {
-                    question_id: currentQ.question_id,
-                    answer: selectedVal,
-                    correct_answer: currentQ.correct_answer
-                },
-                success: function (res) {
-                    console.log("Đã lưu kết quả:", res);
-                }
-            });
-
-        }
-
-
-        if (currentQuestionIndex < questionsData.length - 1) {
-            currentQuestionIndex++;
-            renderQuestion(currentQuestionIndex);
-        } else {
-            alert("Bạn đã hoàn thành bài kiểm tra!");
-            window.location.href = `index.php?page=result&result_id=${resultId}`;
-            console.log("Kết quả:", selectedAnswers);
+        },
+        success: function (res) {
+            console.log("Đã lưu kết quả:", res);
         }
     });
+
+    if (currentQuestionIndex < questionsData.length - 1) {
+        currentQuestionIndex++;
+        renderQuestion(currentQuestionIndex);
+    } else {
+        alert("Bạn đã hoàn thành bài kiểm tra!");
+        $.ajax({
+            url: "models/endTest.php",
+            type: "GET",
+            data: { result_id: resultId },
+            complete: function () {
+                window.location.href = `index.php?page=result&result_id=${resultId}`;
+            }
+        });
+        console.log("Kết quả:", selectedAnswers);
+    }
+});
+
 
     // Đếm ngược thời gian
     function startTimer(duration) {
@@ -205,7 +211,7 @@ initial-scale=1.0">
             if (timeLeft <= 0) {
                 clearInterval(countdown);
                 alert("Hết giờ làm bài!");
-
+                
                 // Duyệt qua toàn bộ câu hỏi chưa có câu trả lời
                 questionsData.forEach(q => {
                     if (!selectedAnswers[q.question_id]) {
@@ -223,7 +229,14 @@ initial-scale=1.0">
                     }
                 });
 
-                window.location.href = `index.php?page=result&result_id=${resultId}`;
+                $.ajax({
+                    url: "models/endTest.php",
+                    type: "GET",
+                    data: { result_id: resultId },
+                    complete: function () {
+                        window.location.href = `index.php?page=result&result_id=${resultId}`;
+                    }
+                });
             }
             }, 1000); 
 

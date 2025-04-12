@@ -21,7 +21,7 @@ $test_id = isset($_GET['test_id']) ? intval($_GET['test_id']) : 1;
 
 // Truy vấn để lấy danh sách kết quả
 $sql = "
-    SELECT r.result_id, r.score, u.username, t.test_name
+    SELECT r.result_id, r.score,r.start_time, r.end_time, r.duration, u.username, t.test_name
     FROM results r
     JOIN users u ON r.user_id = u.user_id
     JOIN tests t ON r.test_id = t.test_id
@@ -110,7 +110,8 @@ $conn->close();
                     <th class="count"></th>
                     <th>Username</th>
                     <th>Score</th>
-                    <th>Date taken</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
                     <th>Duration</th>
                     
                 </tr>
@@ -123,10 +124,10 @@ $conn->close();
                         <td><?php echo $i++; ?></td>
                         <td><?php echo htmlspecialchars($row['username']); ?></td>
                         <td><?php echo htmlspecialchars($row['score']); ?></td>
-                        <!-- GET DATE TIME -->
-                         <td></td>
-                        <!-- GET DURATION TIME -->
-                         <td></td>
+                        <td><?php echo htmlspecialchars($row['start_time']); ?></td>
+                        <td><?php echo htmlspecialchars($row['end_time']); ?></td>
+                        <td><?php echo htmlspecialchars(gmdate("H:i:s",$row['duration'])); ?></td>
+
                     </tr>
                 <?php endforeach; ?>
             </tbody>

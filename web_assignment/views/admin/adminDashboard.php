@@ -1,3 +1,25 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "web";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Kết nối thất bại: " . $conn->connect_error);
+}
+
+$tests = [];
+$sql = "SELECT test_id, test_name, test_category, created_by FROM tests ORDER BY test_id DESC LIMIT 10";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+$result = $stmt->get_result();
+while ($row = $result->fetch_assoc()) {
+    $tests[] = $row;
+}
+?>
+
 <script>
 	console.log(<?= json_encode($_SESSION) ?>);
 </script>
@@ -21,25 +43,25 @@
 				<p>Welcome back, <b><?= $_SESSION['username'] ?></b></p>
 			</div>
             <div class="cards">
-    			<a href="math-test.html" class="card" type="btn">
+    			<a href="index.php?page=admin_edit" class="card" type="btn">
         			<div class="card-content">
-            			<div class="card-name">Math test</div>
+            			<div class="card-name">Edit</div>
         			</div>
         			<div class="icon-box">
             			<i class="fa-solid fa-calculator"></i>
         			</div>
     			</a>
-    			<a href="english-test.html" class="card" type="btn">
+    			<a href="index.php?page=admin_create_test" class="card" type="btn">
 					<div class="card-content">
-						<div class="card-name">English Test</div>
+						<div class="card-name">Create Tests</div>
 					</div>
 					<div class="icon-box">
 						<i class="fa-solid fa-arrow-down-a-z"></i>
 					</div>
 				</a>
-				<a href="physics-test.html" class="card" type="btn">
+				<a href="index.php?page=profile" class="card" type="btn">
 					<div class="card-content">
-						<div class="card-name">Physics Test</div>
+						<div class="card-name">Profile</div>
 					</div>
 					<div class="icon-box">
 						<i class="fa-solid fa-atom"></i>
@@ -49,65 +71,29 @@
 			<div class="tables">
 				<div class="last-test">
                 	<div class="heading">
-                    	<h2>Last Tests</h2>
-                    	<a href="./results.png" class="btn">View All</a>
+                    	<h2>Result of Tests</h2>
+                    	<a href="index.php?page=admin_history" class="btn">View All</a>
                 	</div>
 					<table class="test-tables">
 						<thead>
 							<td>Test</td>
-							<td>Time</td>
-							<td>Point</td>
-							<td>Actions</td>
+							<td>Category</td>
+							<td>Created By</td>
+							<td>View</td>
 						</thead>
 						<tbody>
+						<?php foreach ($tests as $test): ?>
 							<tr>
-								<td>Math</td>
-								<td>10:05/10-03-2025</td>
-								<td>10</td>
+								<td><?= htmlspecialchars($test['test_name']) ?></td>
+								<td><?= htmlspecialchars($test['test_category']) ?></td>
+								<td><?= htmlspecialchars($test['created_by']) ?></td>
 								<td>
-									<i class="far fa-eye"></i>
+									<a href="index.php?page=admin_statistic&test_id=<?= $test['test_id'] ?>" title="View">
+										<i class="far fa-eye"></i>
+									</a>
 								</td>
 							</tr>
-							<tr>
-								<td>English</td>
-								<td>09:00/11-03-2025</td>
-								<td>3</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
-							<tr>
-								<td>Physics</td>
-								<td>15:20/11-03-2025</td>
-								<td>8</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
-							<tr>
-								<td>Physics</td>
-								<td>17:30/14-03-2025</td>
-								<td>6</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
-							<tr>
-								<td>English</td>
-								<td>15:20/18-03-2025</td>
-								<td>10</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
-							<tr>
-								<td>Math</td>
-								<td>20:40/20-03-2025</td>
-								<td>9</td>
-								<td>
-									<i class="far fa-eye"></i>
-								</td>
-							</tr>
+						<?php endforeach; ?>
 						</tbody>
 					</table>
 				</div>
