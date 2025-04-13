@@ -55,7 +55,8 @@ if ($questionResult->num_rows > 0) {
         $imageSrc = ($question['picture_link'] == 'none') ? '' : htmlspecialchars($question['picture_link']);
         $imageElement = '';
         if (!empty($imageSrc)) {
-            $imageElement = '<img src="' . $imageSrc . '" class="card-img-top" alt="Question Image">';
+            $imageElement = '<img src="' . $imageSrc . '" class="card-img-top img-fluid w-25" alt="Question Image">';
+
         }
         $questionsHTML .= '
         <div class="col-md-12 mb-4 product-item">
@@ -80,10 +81,11 @@ if ($questionResult->num_rows > 0) {
                     X
                 </button>
 
-                ' . $imageElement . '
+               
 
                 <div class="card-body pb-4">
                     <h5 class="card-title">' . htmlspecialchars($question['question_text']) . '</h5>
+                     ' . $imageElement . '
                     <p class="card-text">A: ' . htmlspecialchars($question['option_a']) . '</p>
                     <p class="card-text">B: ' . htmlspecialchars($question['option_b']) . '</p>
                     <p class="card-text">C: ' . htmlspecialchars($question['option_c']) . '</p>

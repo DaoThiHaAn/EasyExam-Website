@@ -91,12 +91,13 @@
             } else if (q.correct_answer && q.correct_answer.trim() === q.option_d.trim()) {
                 correctLetter = 'D';
             }
-
+            
             html += `
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Question ${startIndex + index + 1}</h5>
                         <p class="card-text">${q.question_text}</p>
+                        ${q.picture_link ? `<img src="${q.picture_link}" class="card-img-top img-fluid w-25 my-2" alt="Question Image">` : ''}
                         <ul class="list-group">
                             ${getOptionHtml('A', q.option_a, userAnswer, correctAnswer)}
                             ${getOptionHtml('B', q.option_b, userAnswer, correctAnswer)}
