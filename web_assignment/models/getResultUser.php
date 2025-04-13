@@ -69,7 +69,7 @@ $total_questions = $scoreResult['total_questions'] ?? 0;
 
 // Lấy chi tiết câu hỏi
 $sql = "SELECT q.question_text, q.option_a, q.option_b, q.option_c, q.option_d,
-               rtq.answer, q.correct_answer
+               rtq.answer, q.correct_answer,q.picture_link
         FROM result_test_questions rtq
         JOIN questions q ON rtq.question_id = q.question_id
         WHERE rtq.result_id = ?";

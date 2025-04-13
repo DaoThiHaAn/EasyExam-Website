@@ -1,14 +1,17 @@
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= (isset($_GET['page']) && $_GET['page'] == 'home') ? '#carousel' : 'index.php?page=home'; ?>">
             <img src="./images/logo.jpg" class="rounded-circle" alt="logo" height="60px">
         </a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-                
-        <!-- Navigation links inside collapse -->
+
+        <!-- TOÀN BỘ phần có thể thu gọn được -->
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'admin') { ?>
@@ -30,6 +33,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= (isset($_GET['page']) && $_GET['page'] == 'home') ? '#contact' : 'index.php?page=contact'; ?>">Contact</a>
                 </li>
+
                 <?php if (!isset($_SESSION['role']) || $_SESSION['role'] === 'guest') { ?>
                     <li class="nav-item">
                         <a class="btn btn-primary" href="index.php?page=sign-in">Get Started!</a>
@@ -38,11 +42,11 @@
             </ul>
         </div>
 
-        <!-- Always visible profile/logout area (outside collapse) -->
+        <!-- ✅ usermode được đưa ra ngoài phần collapse -->
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'guest') { ?>
-            <div class="usermode d-flex align-items-center">
-                <a class="nav-link account" href="<?= ($_SESSION['role'] == 'user') ? 'index.php?page=profile' : 'index.php?page=admin'; ?>">
-                    <img src="./images/profile.png" alt="User icon" width="25" height="25">
+            <div class="d-flex align-items-center ms-3">
+                <a class="nav-link account d-flex align-items-center" href="<?= ($_SESSION['role'] == 'user') ? 'index.php?page=profile' : 'index.php?page=admin'; ?>">
+                    <img src="./images/profile.png" alt="User icon" width="25" height="25" class="me-2">
                     <?= $_SESSION['username'] ?>
                 </a>
                 <a class="btn btn-primary ms-2 logout" href="index.php?page=logout">Log Out</a>

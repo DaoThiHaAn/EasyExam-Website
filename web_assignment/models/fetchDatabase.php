@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 
 // Lấy dữ liệu từ AJAX
 $category = isset($_GET['category']) ? $_GET['category'] : "";
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = isset($_GET['pagenum']) ? (int)$_GET['pagenum'] : 1;
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 $order = isset($_GET['order']) ? $_GET['order'] : '';
 $limit = 10;
@@ -58,10 +58,11 @@ if ($questionResult->num_rows > 0) {
         $question_text = html_entity_decode($question['question_text']);
         $questionsHTML .= '
         <div class="col-md-12 mb-4 product-item">
-            <div class="question-card card h-100 shadow-sm border-0">'
-            . ($imageSrc != '' ? '<img src="' . $imageSrc . '" class="card-img-top" alt="Question Image">' : '') . '
+            <div class="question-card card h-100 shadow-sm border-0">
+            
                 <div class="question-card-body">
                     <h5 class="card-title">' . $question['question_text'] . '</h5>
+                    '. ($imageSrc != '' ? '<img src="' . $imageSrc . '" class="card-img-top img-fluid w-25" alt="Question Image">' : '') . '
                     <p class="card-text">A: ' . htmlspecialchars($question['option_a']) . '</p>
                     <p class="card-text">B: ' . htmlspecialchars($question['option_b']) . '</p>
                     <p class="card-text">C: ' . htmlspecialchars($question['option_c']) . '</p>
@@ -81,7 +82,6 @@ if ($questionResult->num_rows > 0) {
 } else {
     $questionsHTML = '<p>No questions available!.</p>';
 }
-
 $paginationHTML = '<nav><ul class="pagination justify-content-center mt-4">';
 if ($page > 1) {
     $paginationHTML .= '<li class="page-item"><a class="page-link" href="#" data-page="' . ($page - 1) . '">Previous</a></li>';
@@ -98,7 +98,7 @@ if ($totalPages <= 10) {
         $paginationHTML .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
     }
     
-    $start = max(2, $page - 2);
+    $start = max(1, $page - 2);
     $end = min($totalPages - 1, $page + 2);
     for ($i = $start; $i <= $end; $i++) {
         $active = ($i == $page) ? 'active' : '';

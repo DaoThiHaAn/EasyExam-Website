@@ -8,14 +8,23 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <?php include __DIR__.'/../../include/head.php'; ?>
     <link rel="stylesheet" href="./css/createTest.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
-      MathJax = {
+    MathJax = {
         tex: {
-          inlineMath: [['$', '$']], // Enable inline math using $
-          displayMath: [['$$', '$$']] // Enable display math using $$
+        inlineMath: [['$', '$']], // Kích hoạt công thức nội dòng với $
+        displayMath: [['$$', '$$']] // Công thức độc lập với $$
         }
-      };
+    };
     </script>
+    <script type="text/javascript" async
+    src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+    </script>
+    <script type="text/javascript" async
+    id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <?php include __DIR__.'/../../include/navbar.php'; ?>

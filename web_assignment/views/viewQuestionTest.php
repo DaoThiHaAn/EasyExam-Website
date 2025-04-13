@@ -135,18 +135,13 @@ if (session_status() === PHP_SESSION_NONE) {
 </html>
 
 <script>
-    $(document).ready(function () {
-        // Lấy tham số từ URL nếu có
-        const urlParams = new URLSearchParams(window.location.search);
-        let currentCategory = urlParams.get('category_name') || "0";
-        let currentSearch = "";
-        let currentOrder = "";
-        let selectedQuestionIds = new Set();
-
-        // Gán giá trị vào dropdown category nếu có
-        $("#categorySelect").val(currentCategory);
-
-        function loadProducts(category = 0, page = 1, search = "", order = "") {
+            // Lấy tham số từ URL nếu có
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentCategory = urlParams.get('category_name') || "0";
+    let currentSearch = "";
+    let currentOrder = "";
+    let selectedQuestionIds = new Set();
+    function loadProducts(category = 0, page = 1, search = "", order = "") {
             $.ajax({
                 url: "models/getQuestionName.php",
                 type: "GET",
@@ -162,6 +157,14 @@ if (session_status() === PHP_SESSION_NONE) {
                 }
             });
         }
+    $(document).ready(function () {
+
+        
+
+        // Gán giá trị vào dropdown category nếu có
+        $("#categorySelect").val(currentCategory);
+
+        
 
         // Khi chọn lại category thì thay đổi cả URL (không reload)
         $("#categorySelect").change(function () {

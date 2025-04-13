@@ -58,23 +58,32 @@
               </select>
               
               <h4 class="mb-4">Categories</h4>
-              <div class="d-grid gap-2 cat-list">
-                <button class="btn all-btn category-btn" data-category="0">All</button>
-                <?php 
-                  include("models/getCategories.php"); 
-                  foreach ($categories as $category): ?>
-                  <div class="mb-2 mt-2">
-                    <button class="btn btn-secondary text-start category-btn" 
-                      data-category="<?= htmlspecialchars($category['category_name']) ?>">
-                      <?= htmlspecialchars($category['category_name']) ?>
+                <div class="d-grid gap-2 cat-list">
+
+                  <!-- Nút "All" dùng chung layout -->
+                  <div class="mb-2 d-flex align-items-center">
+                    <button class="btn btn-secondary category-btn flex-grow-1 text-start" data-category="0">
+                      All
                     </button>
-                    <button class="btn btn-danger btn-sm ms-2 remove-category" 
-                      data-category="<?= $category['category_name'] ?>" title="Remove category">
-                      X
-                    </button>
+                    <button class="btn btn-danger btn-sm ms-2" disabled style="opacity: 0; pointer-events: none;">X</button>
                   </div>
-                <?php endforeach; ?>
-              </div>
+
+                  <?php 
+                    include("models/getCategories.php"); 
+                    foreach ($categories as $category): ?>
+                    <div class="mb-2 d-flex align-items-center">
+                      <button class="btn btn-secondary category-btn flex-grow-1 text-start" 
+                        data-category="<?= htmlspecialchars($category['category_name']) ?>">
+                        <?= htmlspecialchars($category['category_name']) ?>
+                      </button>
+                      <button class="btn btn-danger btn-sm ms-2 remove-category" 
+                        data-category="<?= $category['category_name'] ?>" title="Remove category">
+                        X
+                      </button>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+
             </div>
 
             <!-- Right Column: Question List -->
@@ -194,90 +203,91 @@
       
       <!-- Modal for Editing an Existing Question -->
       <section class="modal fade" id="editQuestionModal" tabindex="-1" aria-labelledby="editQuestionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="editQuestionModalLabel">Edit Question</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <!-- Edit Form Column -->
-                <div class="col-md-6">
-                  <form id="editQuestionForm">
-                    <input type="hidden" id="editQuestionId">
-                    <div class="mb-3">
-                      <label for="editProductCategory" class="form-label">Category</label>
-                      <select class="form-select" id="editCategory">
-                        <option value="">Not change</option>
-                        <?php
-                          include("models/getCategories.php");
-                          if (!empty($categories)) {
-                            foreach ($categories as $category): ?>
-                              <option value="<?= htmlspecialchars($category['category_name']) ?>">
-                                <?= htmlspecialchars($category['category_name']) ?>
-                              </option>
-                            <?php endforeach;
-                          } else {
-                            echo '<option value="">No category available!</option>';
-                          }
-                        ?>
-                      </select>
-                    </div>
-                    <p><i class="note-text mb-4">*Note: To write the arithmetic symbols and formulas, use LaTeX format</i></p>
-                    <div class="mb-3">
-                      <label class="form-label">Question: <span style="color: red">*</span></label>
-                      <input class="form-control" id="editQuestionText" rows="5" required></input>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Option A: <span style="color: red">*</span></label>
-                      <textarea class="form-control" id="editOptionA" required rows="2"></textarea>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Option B: <span style="color: red">*</span></label>
-                      <textarea type="text" class="form-control" id="editOptionB" rows="2" required>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Option C: <span style="color: red">*</span></label>
-                      <textarea class="form-control" id="editOptionC" rows="2" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Option D: <span style="color: red">*</span></label>
-                      <textarea class="form-control" id="editOptionD" rows="2" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Correct Answer: <span style="color: red">*</span></label>
-                      <textarea class="form-control" id="editAnswer" rows="2" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Difficulty Level: <span style="color: red">*</span></label>
-                      <input type="number" class="form-control" id="editDifficult" required>
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Image:</label>
-                      <input type="file" class="form-control" id="editImage" accept="image/*">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                  </form>
-                </div>
-                <!-- Modal Preview Column -->
-                <div class="col-md-6">
-                  <h6 class="text-muted text-center">Preview</h6>
-                  <p><strong>Category:</strong> <span id="previewTopic">--</span></p>
-                  <p><strong>Question:</strong> <span id="previewQuestion">--</span></p>
-                  <p><strong>Option A:</strong> <span id="previewA">--</span></p>
-                  <p><strong>Option B:</strong> <span id="previewB">--</span></p>
-                  <p><strong>Option C:</strong> <span id="previewC">--</span></p>
-                  <p><strong>Option D:</strong> <span id="previewD">--</span></p>
-                  <p><strong>Correct Answer:</strong> <span id="previewAnswer">--</span></p>
-                  <p><strong>Difficulty:</strong> <span id="previewDifficulty">--</span></p>
-                  <img id="editPreviewImage" src="" alt="Preview Image" style="max-width: 100%; display: none;">
-                </div>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editQuestionModalLabel">Edit Question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <!-- Edit Form Column -->
+          <div class="col-md-6">
+            <form id="editQuestionForm">
+              <input type="hidden" id="editQuestionId">
+              <div class="mb-3">
+                <label for="editCategory" class="form-label">Category</label>
+                <select class="form-select" id="editCategory">
+                  <option value="">Not change</option>
+                  <?php
+                    include("models/getCategories.php");
+                    if (!empty($categories)) {
+                      foreach ($categories as $category): ?>
+                        <option value="<?= htmlspecialchars($category['category_name']) ?>">
+                          <?= htmlspecialchars($category['category_name']) ?>
+                        </option>
+                      <?php endforeach;
+                    } else {
+                      echo '<option value="">No category available!</option>';
+                    }
+                  ?>
+                </select>
               </div>
-            </div>
+              <p><i class="note-text mb-4">*Note: To write the arithmetic symbols and formulas, use LaTeX format</i></p>
+              <div class="mb-3">
+                <label class="form-label">Question: <span style="color: red">*</span></label>
+                <textarea class="form-control" id="editQuestionText" rows="5" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Option A: <span style="color: red">*</span></label>
+                <textarea class="form-control" id="editOptionA" required rows="2"></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Option B: <span style="color: red">*</span></label>
+                <textarea class="form-control" id="editOptionB" rows="2" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Option C: <span style="color: red">*</span></label>
+                <textarea class="form-control" id="editOptionC" rows="2" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Option D: <span style="color: red">*</span></label>
+                <textarea class="form-control" id="editOptionD" rows="2" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Correct Answer: <span style="color: red">*</span></label>
+                <textarea class="form-control" id="editAnswer" rows="2" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Difficulty Level: <span style="color: red">*</span></label>
+                <input type="number" class="form-control" id="editDifficult" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Image:</label>
+                <input type="file" class="form-control" id="editImage" accept="image/*">
+              </div>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+          </div>
+
+          <!-- Modal Preview Column -->
+          <div class="col-md-6">
+            <h6 class="text-muted text-center">Preview</h6>
+            <p><strong>Category:</strong> <span id="previewTopic">--</span></p>
+            <p><strong>Question:</strong> <span id="previewQuestion">--</span></p>
+            <p><strong>Option A:</strong> <span id="previewA">--</span></p>
+            <p><strong>Option B:</strong> <span id="previewB">--</span></p>
+            <p><strong>Option C:</strong> <span id="previewC">--</span></p>
+            <p><strong>Option D:</strong> <span id="previewD">--</span></p>
+            <p><strong>Correct Answer:</strong> <span id="previewAnswer">--</span></p>
+            <p><strong>Difficulty:</strong> <span id="previewDifficulty">--</span></p>
+            <img id="editPreviewImage" src="" alt="Preview Image" style="max-width: 100%; display: none;">
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
     </main>
     
     <?php include __DIR__.'/../../include/footer.php'; ?>

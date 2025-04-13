@@ -3,7 +3,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'views/adminviewCreatTest.php';
+include 'views/admin/viewCreatTest.php';
 
 ?>
 
@@ -71,9 +71,11 @@ include 'views/adminviewCreatTest.php';
             loadProducts(currentCategory, 1, currentSearch, currentOrder);
         });
 
-        $(document).on("click", ".pagenum-link", function (e) {
+        $(document).on("click", ".page-link", function (e) {
             e.preventDefault();
-            let pagenum = $(this).data("pagenum");
+            let pagenum = $(this).data("page");
+            // Update URL with the new page
+            updateUrlParams({ pagenum: pagenum, category: currentCategory, search: currentSearch, order: currentOrder });
             loadProducts(currentCategory, pagenum, currentSearch, currentOrder);
         });
 

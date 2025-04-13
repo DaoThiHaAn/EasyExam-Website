@@ -313,7 +313,9 @@ include 'views/admin/viewadminedit.php';
             }
 
             console.log("Form Data123:", formData); // Kiểm tra dữ liệu trước khi gửi
-
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}:`, value);
+            }
             $.ajax({
                 url: "models/updateQuestion.php",
                 type: "POST",
@@ -402,12 +404,13 @@ include 'views/admin/viewadminedit.php';
             formData.append("option_d", $("#insertOptionD").val());
             formData.append("correct_answer", $("#insertAnswer").val());
             formData.append("difficulty", $("#insertDifficult").val());
-
+            
             // Kiểm tra xem có file ảnh không
             let imageFile = $("#insertImage")[0].files[0];
             if (imageFile) {
                 formData.append("image", imageFile);
             }
+            
             $.ajax({
                 url: "models/insertQuestion.php",
                 type: "POST",
