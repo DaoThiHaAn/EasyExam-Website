@@ -3,14 +3,6 @@
 	background-color: #F8F1FF !important;
 }
 
-background{
-    background: #f8f0f0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
 /* navbar */
 .navbar {
 	z-index: 999;
@@ -23,13 +15,13 @@ background{
 	font-weight: 400;
 	color: #fff;
 	text-decoration: none;
-	padding: .5rem 1rem;
-	line-height: 2.3;
+	padding: .4rem 0.9rem;
+	line-height: 2.2;
 	width: fit-content;
 }
 
 .navbar-nav a {
-	font-size: 17px;
+	font-size: 16px;
 	text-transform: uppercase;
 	font-weight: 500;
     color: black;
@@ -48,12 +40,12 @@ background{
     color: white;
     font-weight: bold;
     border-radius: 5px;
-    padding: 0.5rem 0.5rem;
-    line-height: 30px; 
+    padding: 0.4rem 0.6rem;
+    line-height: 25px; 
     display: inline-flex;
     align-items: center; 
     justify-content: center; 
-    font-size: 19px;
+    font-size: 18px;
 }
 
 .navbar li a.btn:hover, .logout:hover {
@@ -67,7 +59,7 @@ background{
 }
 .navbar-toggler {
 	padding: 1px 5px;
-	font-size: 17px;
+	font-size: 16px;
 	line-height: 0.3;
 	background: #fff;
 	z-index: 1000;
@@ -84,11 +76,11 @@ background{
 }
 
 .navbar-nav .nav-link:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
 }
 
 .navbar-nav .nav-link.active {
-	transform: scale(1.2);
+	transform: scale(1.15);
     color: #6052ff;
     font-weight: bold;
 }
@@ -96,7 +88,7 @@ background{
 .usermode {
 	display: flex;
 	gap: 15px;
-	font-size: 23px;
+	font-size: 21px;
 	font-weight: 500px;
 }
 
@@ -104,7 +96,7 @@ background{
 	background-color: white;
 	padding: 7px 10px;
 	border-radius: 40px;
-	max-width: 100px; /* Adjust as needed */
+	max-width: 120px; /* Adjust as needed */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -166,21 +158,47 @@ background{
 .portfolion img{
     height: 100px;
 }
-#contact form {
+
+/* CONTACT FORM */
+.contact {
+	display: flex;
+	gap: 20px;
+	padding: 30px;
+}
+
+.contact-form {
 	display: flex;
 	flex-direction: column;
-	align-items: center; 
+	align-items: center;
+	width: fit-content;
 }
 
 #contact button {
-	width: 50%
+	width: fit-content;
+	padding: 5px 10px;
+	font-size: 17px;
+
+}
+
+/* GOOGLE MAPS */
+.map-container {
+    margin: auto auto;     /* center the container with vertical spacing */
+    width: fit-content;
+	height: fit-content;
+    padding: 1rem;        /* optional horizontal padding */
+	background-color: whitesmoke;
+}
+
+iframe {
+	width: 500px;
+	height: 450px;
 }
 
 /* footer */
 footer{
     color: #8d8ba7;
 	padding: 20px;
-	font-size: 18px !important;
+	font-size: 17px !important;
 }
 
 footer h5{
@@ -237,21 +255,7 @@ hr.light-100{
 
 
 /* responsive css */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-	.carousel-caption {
-		bottom: 370px;
-	}
-	.carousel-caption p {
-		width: 100%;
-	}
-	.card {
-		margin-bottom: 30px;
-	}
-	.img-area img {
-		width: 100%;
-	}
-}
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
 	.navbar-nav {
 		text-align: center;
 	}
@@ -271,15 +275,28 @@ hr.light-100{
 		font-size: 12px;
 	}
 	.about-text {
-		padding-top: 50px;
+		padding-top: 45px;
 	}
 	.card {
-		margin-bottom: 30px;
+		margin-bottom: 25px;
 	}
 	.usermode {
 		font-size: 18px;
 	}
 	.navbar li a.btn, .logout {
-		font-size: 18px;
+		font-size: 16px;
+	}
+
+	.contact {
+		flex-direction: column;
+	}
+
+	iframe {
+		width: 100%;
+		height: 300px;
+	}
+
+	footer {
+		font-size: 14px !important;
 	}
 }

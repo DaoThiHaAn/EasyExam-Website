@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= (isset($_GET['page']) && $_GET['page'] == 'home') ? '#carousel' : 'index.php?page=home'; ?>">
-            <img src="./images/logo.jpg" class="rounded-circle" alt="logo" height="60px">
+            <img src="./images/logo.jpg" class="rounded-circle" alt="logo" height="50px">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

@@ -33,6 +33,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <button class="delete-btn btn btn-outline-danger" onclick="openDeleteDialog()">Delete Account</button>
 
         </main>
+        <?php include __DIR__.'/../../views/dialog.php'; ?>
             
         <?php include __DIR__.'/../../include/footer.php'; ?>
         <script src="./js/auth.js"></script>

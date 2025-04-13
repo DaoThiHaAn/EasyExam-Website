@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="section-header text-center pb-5">
-                    <h2>3 Test Categories</h2>
-                    <p>Provide better preparation for National Exam for A1 group <br>Let's register account to take all available tests</p>
+                    <h2>Test Categories</h2>
+                    <p>Provide better preparation for Vietnam High School National Exam <br>Let's register account to take all available tests</p>
                 </div>
             </div>
         </div>
