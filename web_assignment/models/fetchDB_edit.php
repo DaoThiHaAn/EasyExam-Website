@@ -1,5 +1,3 @@
-
-
 <?php
 $servername = "localhost";
 $username = "root";
@@ -54,9 +52,12 @@ $questionResult = $conn->query($questionQuery);
 $questionsHTML = '';
 if ($questionResult->num_rows > 0) {
     while ($question = $questionResult->fetch_assoc()) {
-        $imageSrc = ($question['picture_link'] == 'none') ? 'default.png' : htmlspecialchars($question['picture_link']);
+        $imageSrc = ($question['picture_link'] == 'none') ? '' : htmlspecialchars($question['picture_link']);
+        $imageElement = '';
+        if (!empty($imageSrc)) {
+            $imageElement = '<img src="' . $imageSrc . '" class="card-img-top" alt="Question Image">';
+        }
         $questionsHTML .= '
-        
         <div class="col-md-12 mb-4 product-item">
             <div class="card h-100 shadow-lg border-0">
                 <button class="btn btn-success btn-sm position-absolute bottom-0 start-0 m-2 mr-4 edit-product"  
@@ -75,25 +76,26 @@ if ($questionResult->num_rows > 0) {
                 </button>
 
                 <button class="btn btn-danger btn-sm position-absolute bottom-0 end-0 m-2 remove-product" 
-                    data-id="' . $question['question_id'] . '">X
+                    data-id="' . $question['question_id'] . '" title="Remove question">
+                    X
                 </button>
 
-                <img src="' . $imageSrc . '" class="card-img-top" alt="Question Image">
+                ' . $imageElement . '
+
                 <div class="card-body pb-4">
                     <h5 class="card-title">' . htmlspecialchars($question['question_text']) . '</h5>
                     <p class="card-text">A: ' . htmlspecialchars($question['option_a']) . '</p>
                     <p class="card-text">B: ' . htmlspecialchars($question['option_b']) . '</p>
                     <p class="card-text">C: ' . htmlspecialchars($question['option_c']) . '</p>
                     <p class="card-text">D: ' . htmlspecialchars($question['option_d']) . '</p>
-                    <p class="card-text">Answer: ' . htmlspecialchars($question['correct_answer']) . '</p>
-                    <p class="card-text mb-4">Difficulty: ' . htmlspecialchars($question['difficulty']) . '</p>
-
+                    <p class="ans-text card-text">Answer: ' . htmlspecialchars($question['correct_answer']) . '</p>
+                    <p class="diff-text mb-4">Difficulty: ' . htmlspecialchars($question['difficulty']) . '</p>
                 </div>
             </div>
         </div>';
     }
 } else {
-    $questionsHTML = '<p>Không có câu hỏi nào phù hợp.</p>';
+    $questionsHTML = '<p>No matching question!</p>';
 }
 
 $paginationHTML = '<nav><ul class="pagination justify-content-center mt-4">';
@@ -112,7 +114,7 @@ if ($totalPages <= 10) {
         $paginationHTML .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
     }
     
-    $start = max(2, $page - 2);
+    $start = max(1, $page - 2);
     $end = min($totalPages - 1, $page + 2);
     for ($i = $start; $i <= $end; $i++) {
         $active = ($i == $page) ? 'active' : '';

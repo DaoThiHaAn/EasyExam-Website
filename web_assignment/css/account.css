@@ -10,3 +10,35 @@
     overflow-wrap: break-word;   /* Break long words if needed */
     word-break: break-all;   
 }
+
+/*ADMIN*/
+.admin-content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    padding: 40px 20px;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.admin.account-info {
+    min-width: 30%;
+}
+.admin-content-area > * {
+    width: fit-content;
+}
+
+.admin-content-area button {
+    width: 20%
+}
+
+.pssw-btn {
+    background-color: #5D5A88;
+    color: whitesmoke;
+}
+
+.pssw-btn:hover {
+    background-color: #ADABC3;
+    color: whitesmoke;
+}

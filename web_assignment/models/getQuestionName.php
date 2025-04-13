@@ -60,26 +60,26 @@ $testsHTML = '';
 if ($testResult->num_rows > 0) {
     while ($test = $testResult->fetch_assoc()) {
         $testsHTML .= '
-        
-        <div class="col-md-12 mb-4 test-item">
-            <div class="card h-100 shadow-lg border-0">
+            <div class="test-card card shadow-sm border-0">
                 <div class="card-body">
-                    <h5 class="card-title">Chủ đề:' . $test['test_category'] . '</h5>
-                    <p class="card-text">Tên: ' . htmlspecialchars($test['test_name']) . '</p>
-                    <p class="card-text">Số câu hỏi: ' . htmlspecialchars($test['count']) . '</p>
-                    <p class="card-text">Thời gian: ' . htmlspecialchars($test['test_time']) . '</p>
-                    <button class="btn btn-primary w-100 mt-2 view-test-btn"
+                    <h5 class="card-title">Category: ' . $test['test_category'] . '</h5>
+                    <p class="card-text">Test Name: ' . htmlspecialchars($test['test_name']) . '</p>
+                    <p class="card-text">Number of Questions: ' . htmlspecialchars($test['count']) . '</p>
+                    <p class="card-text">
+                        Duration <span><i class="fa-solid fa-hourglass"></i></span>
+                         :  ' . htmlspecialchars($test['test_time']) . '
+                    </p>
+                    <button class="btn mt-2 btn-primary view-test-btn"
                     data-id="' . htmlspecialchars($test['test_id']) . '"
                     >View</button>
 
                 </div>
             </div>
-        </div>
         ';
     }
 } else {
 
-    $testsHTML = '<p>Không có câu hỏi nào phù hợp.</p>';
+    $testsHTML = '<p>No matching tests found!.</p>';
 }
 
 $paginationHTML = '<nav><ul class="pagination justify-content-center mt-4">';
@@ -98,7 +98,7 @@ if ($totalPages <= 10) {
         $paginationHTML .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
     }
     
-    $start = max(2, $page - 2);
+    $start = max(1, $page - 2);
     $end = min($totalPages - 1, $page + 2);
     for ($i = $start; $i <= $end; $i++) {
         $active = ($i == $page) ? 'active' : '';
@@ -117,9 +117,4 @@ if ($page < $totalPages) {
 $paginationHTML .= '</ul></nav>';
 
 echo json_encode(["tests" => $testsHTML, "pagination" => $paginationHTML]);
-
-
-
-
-
 ?>

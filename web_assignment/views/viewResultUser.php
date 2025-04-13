@@ -1,5 +1,4 @@
 <?php include "models/getResultUser.php"; ?>
-<!DOCTYPE html>
 <html>
 <head>
 <?php include __DIR__."/../include/head.php"; ?>
@@ -12,25 +11,22 @@
     }
   };
 </script>
-<script type="text/javascript" async
-  id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
 </head>
 
 <body class="bg-light">
 <?php include __DIR__.'/../include/navbar.php'; ?>
-<section class="container mt-5">
+<section class="container mt-3">
     <div class="text-center">
-        <h2 class="mb-4">🎉 Result of your Test</h2>
+        <h2 class="mb-4" style="color: #5D5A88">🎉 Result of your Test 🎉</h2>
         <h3 class="mb-4">Test Name: <?= htmlspecialchars($test_name) ?></h3>
-        <p><strong>Score:</strong> <?= $score ?> / <?= $total_questions ?></p>
+        <p class="score-div"><strong>Score:</strong> <?= $score ?> / <?= $total_questions ?></p>
         <p><strong>Start time:</strong> <?= $start_time ?> </p>
         <p><strong>Finished time:</strong> <?= $end_time ?> </p>
         <p><strong>Duration:</strong> <?= $duration_formatted ?> </p>
     </div>
 
     <div class="mt-4">
-        <h4>Answer details:</h4>
+        <h4 class="mb-4">Answer details:</h4>
         <div id="question-table-container"></div>
 
         <div class="d-flex justify-content-between align-items-center mt-3">
@@ -67,19 +63,34 @@
                 let optionClass = '';
                 let extraText = '';
 
-                if (isCorrect) {
-                    optionClass = 'list-group-item-success';
-                    extraText = `<br><small class="text-white font-weight-bold">✔ Đáp án đúng</small>`;
+                // Mark accordingly:
+                if (isUserChoice && isCorrect) {
+                    // User selected the correct answer
+                    optionClass = 'list-group-item-success user-selected';
+                    extraText = `<br><small class="text-success font-weight-bold">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Correct</span></small>`;
+                } else if (isUserChoice && !isCorrect) {
+                    // User selected an incorrect answer
+                    optionClass = 'list-group-item-danger user-selected';
+                    extraText = `<br><small class="text-danger font-weight-bold">
+                    <i class="fa-solid fa-xmark"></i> <span>Incorrect</span></small>`;
                 }
-
-                if (isUserChoice && !isCorrect) {
-                    optionClass = 'list-group-item-danger';
-                    extraText += `<br><small class="text-success">✔ Đáp án đúng: ${correctAnswer}</small>`;
-                }
-
+        
                 return `<li class="list-group-item ${optionClass}">${letter}. ${optionText}${extraText}</li>`;
             }
 
+            // Determine which option letter is the correct answer
+            let correctLetter = '';
+            if (q.correct_answer && q.correct_answer.trim() === q.option_a.trim()) {
+                correctLetter = 'A';
+            } else if (q.correct_answer && q.correct_answer.trim() === q.option_b.trim()) {
+                correctLetter = 'B';
+            } else if (q.correct_answer && q.correct_answer.trim() === q.option_c.trim()) {
+                correctLetter = 'C';
+            } else if (q.correct_answer && q.correct_answer.trim() === q.option_d.trim()) {
+                correctLetter = 'D';
+            }
 
             html += `
                 <div class="card mb-3">
@@ -92,9 +103,12 @@
                             ${getOptionHtml('C', q.option_c, userAnswer, correctAnswer)}
                             ${getOptionHtml('D', q.option_d, userAnswer, correctAnswer)}
                         </ul>
+                        <div class="alert alert-info mt-2">
+                            <strong>Correct Answer:</strong> ${correctLetter}. ${q.correct_answer}
+                        </div>
                         ${!userAnswer || userAnswer.trim() === '' ? `
                             <div class="alert alert-warning mt-2 mb-0">
-                                ⚠️ Bạn không chọn đáp án cho câu hỏi này.
+                                ⚠️ This question was unanswered.
                             </div>
                         ` : ''}
                     </div>

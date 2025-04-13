@@ -1,3 +1,7 @@
+.card-body table {
+    font-size: 16px;
+  }
+  
 .view-btn{
     border: solid 1px #4A3AFF;
     text-decoration: none;

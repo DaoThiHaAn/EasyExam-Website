@@ -10,3 +10,12 @@
     color:#9b93f7;
     border-color: #9b93f7;
 }
+
+.score-div {
+    border: 1px solid palevioletred;
+    color: palevioletred;
+    background-color: rgb(255, 251, 255);
+    width: fit-content;
+    padding: 5px 10px;
+    margin: 10px auto;
+}

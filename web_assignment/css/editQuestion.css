@@ -1,0 +1,84 @@
+.header-text {
+    color: #5D5A88;
+}
+
+.cat-list {
+    overflow-y: auto; 
+    scrollbar-width: thin;
+}
+
+
+.category-btn {
+    background-color: #9795B5;
+}
+
+.all-btn {
+    width: 50%;
+    background-color: #5D5A88;
+    color: whitesmoke;
+}
+
+.category-btn:hover {
+    background-color: #5D5A88;
+    color: whitesmoke;
+}
+
+.all-btn:hover {
+    background-color: #302e4d;
+    color: whitesmoke;
+}
+/* Active tab header background & text */
+.nav-tabs .nav-link.active {
+    background-color: #F3F6FF !important; /* Use your desired color */
+    color: #005662 !important;
+    border-color: #7e9fa3 !important;
+    border-bottom: none!important; /* Remove bottom border to connect with content */
+
+  }
+  
+  /* Active tab content background */
+  .tab-content > .tab-pane.active {
+    background-color: #F3F6FF; /* Use your desired background color */
+    padding: 25px;
+    border: 0.5px solid #7e9fa3;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    /* Optionally add border-top: none; to connect with tabs */
+  }
+
+  label {
+    font-weight:500 !important;
+    font-size: 1.02em !important;
+    color: rgb(72, 19, 19);
+  }
+  .insert-card {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .insert-card .card-header {
+    background-color: transparent !important;
+    border-bottom: 2px solid #7e9fa3 !important;
+    padding: 10px 20px !important;
+    font-weight: bold !important;
+  }
+
+  .preview {
+    background-color: white !important;
+    padding: 20px;
+  }
+
+  .note-text {
+    color: rgb(157, 130, 130)
+  }
+
+  .ans-text {
+    font-style: italic;
+    color: green;
+    font-weight: bold;
+  }
+
+  .diff-text {
+    color: rgb(129, 128, 128)
+  }

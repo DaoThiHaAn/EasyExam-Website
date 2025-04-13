@@ -13,17 +13,17 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'admin') { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= (isset($_GET['page']) && $_GET['page'] == 'home') ? '#carousel' : 'index.php?page=home'; ?>">Home</a>
+                        <a class="nav-link" href="<?= ($_GET['page'] == 'home') ? '#carousel' : 'index.php?page=home'; ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= (isset($_GET['page']) && $_GET['page'] == 'home') ? '#about' : 'index.php?page=about'; ?>">About</a>
+                        <a class="nav-link" href="<?= ($_GET['page'] == 'home') ? '#about' : 'index.php?page=about'; ?>">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= (isset($_GET['page']) && $_GET['page'] == 'home') ? '#category' : 'index.php?page=category'; ?>">Category</a>
+                        <a class="nav-link" href="<?= ($_GET['page'] == 'home') ? '#category' : 'index.php?page=preview_test'; ?>">Test</a>
                     </li>
                 <?php } else { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?page=adminDashboard">Dashboard</a>
+                        <a class="nav-link" href="index.php?page=admin">Dashboard</a>
                     </li>
                 <?php } ?>
 
@@ -41,7 +41,7 @@
         <!-- Always visible profile/logout area (outside collapse) -->
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'guest') { ?>
             <div class="usermode d-flex align-items-center">
-                <a class="nav-link account" href="index.php?page=profile">
+                <a class="nav-link account" href="<?= ($_SESSION['role'] == 'user') ? 'index.php?page=profile' : 'index.php?page=admin'; ?>">
                     <img src="./images/profile.png" alt="User icon" width="25" height="25">
                     <?= $_SESSION['username'] ?>
                 </a>

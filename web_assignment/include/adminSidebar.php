@@ -16,9 +16,9 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link <?= ($page === 'admin_edit') ? 'active' : '' ?>" href="index.php?page=admin_edit">
+      <a class="nav-link <?= ($page === 'admin_edit') ? 'active' : '' ?>" href="index.php?page=admin_manage_questions">
         <i class="fa-solid fa-pen-to-square"></i>
-        <span class="ms-2">Edit</span>
+        <span class="ms-2">Manage Questions</span>
       </a>
     </li>
     <li class="nav-item">
@@ -28,7 +28,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link <?= ($page === 'profile') ? 'active' : '' ?>" href="index.php?page=profile">
+      <a class="nav-link <?= ($page === 'profile') ? 'active' : '' ?>" href="index.php?page=adminProfile">
         <i class="fa-solid fa-user"></i>
         <span class="ms-2">Profiles</span>
       </a>

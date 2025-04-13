@@ -1,5 +1,5 @@
 .navbar, .footer{
-    font-family: 'Gamja Flower',sans-serif;
+    font-family: 'Patrick Hand',sans-serif;
 	background-color: #F8F1FF !important;
 }
 
@@ -53,7 +53,7 @@ background{
     display: inline-flex;
     align-items: center; 
     justify-content: center; 
-    font-size: 22px;
+    font-size: 19px;
 }
 
 .navbar li a.btn:hover, .logout:hover {
@@ -67,9 +67,11 @@ background{
 }
 .navbar-toggler {
 	padding: 1px 5px;
-	font-size: 18px;
+	font-size: 17px;
 	line-height: 0.3;
 	background: #fff;
+	z-index: 1000;
+  position: relative;
 }
 
 .nav-item {
@@ -178,7 +180,7 @@ background{
 footer{
     color: #8d8ba7;
 	padding: 20px;
-	font-size: 20px !important;
+	font-size: 18px !important;
 }
 
 footer h5{
@@ -217,6 +219,21 @@ hr.light-100{
     border-top: 1px solid #6052ff;
     width: 100%;
 }
+
+
+.viewall a {
+	text-decoration: none;
+	color: #4941a1;
+	font-size: 20px;
+	font-weight: bold;
+
+}
+
+.viewall a:hover {
+	color: #9990f7;
+	text-decoration: underline;
+}
+
 
 
 /* responsive css */

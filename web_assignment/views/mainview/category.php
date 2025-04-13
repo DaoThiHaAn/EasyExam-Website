@@ -1,20 +1,3 @@
-<?php
-// Check if this file is included as a partial. If not, output the full HTML.
-if (!defined('PARTIAL')) {
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include './include/head.php'; ?>
-    <meta name="description" content="Contact form">
-    <meta name="keywords" content="contact, support, inquiries, help, assistance">
-</head>
-<body>
-<?php
-    include './include/navbar.php';
-}
-?>
-
 <section id="category" class="category section-padding">
     <div class="container">
         <div class="row">
@@ -58,14 +41,11 @@ if (!defined('PARTIAL')) {
             </div>
         </div>
     </div>
-</section>
 
-<?php
-if (!defined('PARTIAL')) {
-?>
-    <?php include './include/footer.php'; ?>
-</body>
-</html>
-<?php
-}
-?>
+    <div class="viewall d-flex justify-content-center align-items-center mt-4">
+        <a href="index.php?page=preview_test">
+            View all tests
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</section>

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -12,6 +13,11 @@ echo "<script>console.log('Session: " . $_SESSION['role'] . "');</script>";
 $mydatabase = new mysqli("localhost", "root", "", "web");
 if ($mydatabase->connect_error) {
     die("Connection failed: " . $mydatabase->connect_error);
+}
+
+if (!isset($_GET['page']) || empty($_GET['page'])) {
+    header('Location: index.php?page=home');
+    exit();
 }
 
 // Kiểm tra nếu người dùng chưa đăng nhập và trang yêu cầu đăng nhập

@@ -1,30 +1,3 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "web";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Kết nối thất bại: " . $conn->connect_error);
-}
-
-$tests = [];
-$sql = "SELECT test_id, test_name, test_category, created_by FROM tests ORDER BY test_id DESC LIMIT 10";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-
-$result = $stmt->get_result();
-while ($row = $result->fetch_assoc()) {
-    $tests[] = $row;
-}
-?>
-
-<script>
-	console.log(<?= json_encode($_SESSION) ?>);
-</script>
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
 	<?php include __DIR__.'/../../include/head.php'; ?>
@@ -39,39 +12,14 @@ while ($row = $result->fetch_assoc()) {
 		
         <div class="main" id="mainContent">
 			<div class="title">
-				<h1>Admin Dashboard</h1>
-				<p>Welcome back, <b><?= $_SESSION['username'] ?></b></p>
+				<h1>Welcome back,</h1>
+				<h2><i><?= $_SESSION['username'] ?></i></h2>
 			</div>
-            <div class="cards">
-    			<a href="index.php?page=admin_edit" class="card" type="btn">
-        			<div class="card-content">
-            			<div class="card-name">Edit</div>
-        			</div>
-        			<div class="icon-box">
-            			<i class="fa-solid fa-calculator"></i>
-        			</div>
-    			</a>
-    			<a href="index.php?page=admin_create_test" class="card" type="btn">
-					<div class="card-content">
-						<div class="card-name">Create Tests</div>
-					</div>
-					<div class="icon-box">
-						<i class="fa-solid fa-arrow-down-a-z"></i>
-					</div>
-				</a>
-				<a href="index.php?page=profile" class="card" type="btn">
-					<div class="card-content">
-						<div class="card-name">Profile</div>
-					</div>
-					<div class="icon-box">
-						<i class="fa-solid fa-atom"></i>
-					</div>
-				</a>
-			</div>
+            
 			<div class="tables">
 				<div class="last-test">
                 	<div class="heading">
-                    	<h2>Result of Tests</h2>
+                    	<h2>Available Tests</h2>
                     	<a href="index.php?page=admin_history" class="btn">View All</a>
                 	</div>
 					<table class="test-tables">

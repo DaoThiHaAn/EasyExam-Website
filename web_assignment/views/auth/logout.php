@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <?php include __DIR__.'/../../include/head.php'; ?>

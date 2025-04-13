@@ -19,8 +19,4 @@ $categories = [];
 while ($row = $categoryResult->fetch_assoc()) {
     $categories[] = $row;
 }
-
-
-
-
 ?>

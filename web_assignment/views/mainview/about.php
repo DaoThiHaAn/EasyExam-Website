@@ -34,7 +34,7 @@ if (!defined('PARTIAL')) {
 </section>
 
     <!-- portfolio section -->
-<section class="portfolio section-padding" id="portfolio">
+<section class="portfolio mb-5" id="portfolio">
         <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -48,7 +48,7 @@ if (!defined('PARTIAL')) {
                 <div class="card text-center">
                     <div class="card-body">
                         <img src="./images/team-1.png" height=10px alt="profile image" class="img-fluid rounded-circle">
-                    <h3 class="card-title py-2">Jack Wilson</h3>
+                    <h3 class="card-title py-2">Hà Thế Bình</h3>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@ if (!defined('PARTIAL')) {
                 <div class="card text-center">
                     <div class="card-body">
                         <img src="./images/team-2.png" alt="profile image" class="img-fluid rounded-circle">
-                        <h3 class="card-title py-2">Jack Wilson</h3>
+                        <h3 class="card-title py-2">Đào Thị Hà An</h3>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@ if (!defined('PARTIAL')) {
                 <div class="card text-center">
                     <div class="card-body">
                         <img src="./images/team-3.png" alt="profile image" class="img-fluid rounded-circle">
-                        <h3 class="card-title py-2">Jack Wilson</h3>
+                        <h3 class="card-title py-2">Đào Nam Anh</h3>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@ if (!defined('PARTIAL')) {
                 <div class="card text-center">
                     <div class="card-body">
                         <img src="./images/team-4.png" alt="profile image" class="img-fluid rounded-circle">
-                        <h3 class="card-title py-2">Jack Wilson</h3>
+                        <h3 class="card-title py-2">Lưu Chí Cường</h3>
                     </div>
                 </div>
             </div>

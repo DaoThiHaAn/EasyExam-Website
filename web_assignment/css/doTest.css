@@ -1,0 +1,19 @@
+.text-note {
+    font-style: italic;
+    color: #8d5959 !important;
+}
+
+.time-box {
+    border: 1px solid #7e9fa3;
+    background-color: whitesmoke;
+    padding: 10px;
+}
+
+.header-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-box > * {
+    width: max-content;
+}

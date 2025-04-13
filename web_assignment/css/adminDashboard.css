@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Gamja Flower', sans-serif;
+    font-family: 'Patrick Hand', sans-serif;
 }
 
 .container {
@@ -94,6 +94,9 @@
     border-bottom-right-radius: 50px;
 }
 
+.title h2 {
+    color: #3125b9
+}
 
 .usermode {
 	display: flex;

@@ -1,8 +1,6 @@
-
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'views/viewQuestionTest.php';
-
+include __DIR__.'/../views/admin/adminProfile.php';
 ?>

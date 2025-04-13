@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 echo "<script>console.log(" . json_encode($_SESSION) . ");</script>";
                 echo "<script>window.location.href = 'index.php?page=home';</script>";
             } else if ($_SESSION['role'] === 'admin') {
-                echo "<script>window.location.href = 'index.php?page=adminDashboard';</script>";
+                echo "<script>window.location.href = 'index.php?page=admin';</script>";
                 echo "<script>console.log(" . json_encode($_SESSION) . ");</script>";
             } else {
                 echo "<script>window.location.href = 'index.php?page=sign-in';</script>";

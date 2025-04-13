@@ -22,7 +22,7 @@ if (!defined('PARTIAL')) {
                 <div class="section-header text-center pb-5">
                     <h2>Contact Us</h2><br>
                     <p>We'd love to hear from you!</p>
-                    <p>Whether you have a question, feedback, or need support, feel free to reach out using the form below or via our contact details.</p>
+                    <p>Whether you have a question, feedback, report issues, or need support, feel free to reach out using the form below or via our contact details.</p>
                 </div>
             </div>
         </div>
