@@ -15,7 +15,7 @@ if (!defined('PARTIAL')) {
 }
 ?>
 
-<h2 class="text-center" style="position: relative;">Contact Us</h2>
+<h2 class="text-center mt-3" style="position: relative;">Contact Us</h2>
 <section id="contact" class="contact">
     <div class="mt-5 mb-5">
         <div class="section-header text-center">
@@ -23,17 +23,11 @@ if (!defined('PARTIAL')) {
             <p>Whether you have a question, feedback, report issues, or need support, feel free to reach out using the form below or via our contact details.</p>
         </div>
         <div class="p-0 pt-4 pb-4">
-            <form action="#" class=".contact-form bg-light p-4">
-                <div class="mb-3">
-                    <input class="form-control" placeholder="Full Name" required="" type="text">
-                </div>
-                <div class="mb-3">
-                    <input class="form-control" placeholder="Email" required="" type="email">
-                </div>
-                <div class="mb-3">
-                    <textarea class="form-control" placeholder="Message" required="" rows="5" cols="3"></textarea>
-                </div>
-                <button class="btn btn-warning btn-lg btn-block mt-3" type="button">Send Now</button>
+            <form id="contactForm" action="controllers/send_contact.php" method="POST" class="contact-form bg-light p-4">
+                <input class="form-control" placeholder="Full Name" required="" type="text">
+                <input class="form-control" placeholder="Email" required="" type="email">
+                <textarea class="form-control" placeholder="Message" required="" rows="5" cols="3"></textarea>
+                <button class="btn btn-warning btn-lg btn-block mt-3" type="submit">Send Now</button>
             </form>
         </div>
     </div>
@@ -54,3 +48,23 @@ if (!defined('PARTIAL')) {
 <?php
 }
 ?>
+<script>
+$(document).ready(function(){
+    $("#contactForm").on("submit", function(e) {
+        e.preventDefault();
+        
+        $.ajax({
+            url: "models/sendContact.php",
+            type: "POST",
+            data: $(this).serialize(),
+            dataType: "json",
+            success: function(response) {
+                alert(response.message);
+            },
+            error: function() {
+                alert("An error occurred while sending your message.");
+            }
+        });
+    });
+});
+</script>

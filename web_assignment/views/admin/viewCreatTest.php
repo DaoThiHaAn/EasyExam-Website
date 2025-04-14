@@ -76,7 +76,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                                 <p id="selectedCount">Selected questions: <span>0</span></p>
                                             </div>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="searchInput" placeholder="Searching...">
+                                                <input type="text" class="form-control" id="searchInput" placeholder="Searching question...">
                                                 <span class="input-group-text">
                                                     <i class="fas fa-search"></i>
                                                 </span>

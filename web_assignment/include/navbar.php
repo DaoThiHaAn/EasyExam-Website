@@ -1,5 +1,3 @@
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= (isset($_GET['page']) && $_GET['page'] == 'home') ? '#carousel' : 'index.php?page=home'; ?>">
@@ -45,7 +43,7 @@
         <!-- ✅ usermode được đưa ra ngoài phần collapse -->
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'guest') { ?>
             <div class="d-flex align-items-center ms-3">
-                <a class="nav-link account d-flex align-items-center" href="<?= ($_SESSION['role'] == 'user') ? 'index.php?page=profile' : 'index.php?page=admin'; ?>">
+                <a class="nav-link account d-flex align-items-center" href="<?= ($_SESSION['role'] == 'user') ? 'index.php?page=profile' : 'index.php?page=adminProfile'; ?>">
                     <img src="./images/profile.png" alt="User icon" width="25" height="25" class="me-2">
                     <?= $_SESSION['username'] ?>
                 </a>
@@ -54,3 +52,13 @@
         <?php } ?>
     </div>
 </nav>
+
+<script>
+    $(window).on('scroll', function() {
+        if ($(window).scrollTop() > 10) {
+            $('.navbar').addClass('navbar-shadow');
+        } else {
+            $('.navbar').removeClass('navbar-shadow');
+        }
+    });
+</script>

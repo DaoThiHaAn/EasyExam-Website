@@ -42,7 +42,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="col-md-5">
             <label for="searchInput" class="form-label d-block">Search:</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="searchInput" placeholder="Searching...">
+                <input type="text" class="form-control" id="searchInput" placeholder="Searching test name...">
                 <span class="input-group-text">
                     <i class="fas fa-search"></i>
                 </span>
@@ -73,26 +73,6 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
 
     </main>
-
-<!-- Modal xem trước câu hỏi -->
-<section class="modal fade" id="testPreviewModal" tabindex="-1" aria-labelledby="testPreviewModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content bg-light">
-      <div class="modal-header">
-        <h5 class="modal-title" id="testPreviewModalLabel">Test Statistics</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="testPreviewContent">
-        <!-- Nội dung câu hỏi sẽ được chèn vào đây -->
-      </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="startTestBtn" data-role="<?= isset($_SESSION['role']) ? $_SESSION['role'] : '' ?>">
-                Start Mock Test
-            </button>
-        </div>
-    </div>
-  </div>
-</section>
 
 <?php include __DIR__."/../../include/footer.php"; ?>
 </body>
