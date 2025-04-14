@@ -1,10 +1,8 @@
-
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include 'views/admin/viewCreatTest.php';
-
 ?>
 
 <script>
@@ -20,12 +18,21 @@ include 'views/admin/viewCreatTest.php';
         history.pushState({}, '', url);
     }
 
-
     $(document).ready(function () {
         let currentCategory = null;
         let currentSearch = "";
         let currentOrder = "";
-        let selectedQuestionIds = new Set(); // Tập hợp lưu câu hỏi đã chọn
+        let selectedQuestionIds = new Set(); // Set to track selected question IDs
+
+        function restoreSelections() {
+            $(".form-check-input").each(function () {
+                const id = $(this).data("id");
+                if (selectedQuestionIds.has(id)) {
+                    $(this).prop("checked", true);
+                }
+            });
+            $('#selectedCount span').text(selectedQuestionIds.size);
+        }
 
         function loadProducts(category = null, pagenum = 1, search = "", order = "") {
             if (category === null || category === "0") {
@@ -35,33 +42,27 @@ include 'views/admin/viewCreatTest.php';
             }
 
             // Update URL parameters
-            updateUrlParams({
-                category: category,
-                search: search,
-                order: order,
-                pagenum: pagenum
-            });
+            updateUrlParams({ category, search, order, pagenum });
 
             $.ajax({
                 url: "models/fetchDatabase.php",
                 type: "GET",
-                data: { category: category, pagenum: pagenum, search: search, order: order },
+                data: { category, pagenum, search, order },
                 success: function (response) {
                     let data = JSON.parse(response);
                     $("#product-list").html(data.products);
                     $("#pagination").html(data.pagination);
                     $('#resultCount span').text(data.total);
-                    MathJax.typeset(); // Ép MathJax cập nhật
+                    MathJax.typeset();
 
-                    // Reset danh sách câu hỏi đã chọn khi đổi danh mục
-                    selectedQuestionIds.clear();
+                    restoreSelections(); // Restore checkbox states
                 }
             });
         }
 
         $(".category-btn").click(function () {
             currentCategory = $(this).data("category");
-            $("#categorySelect").val(currentCategory); // Đồng bộ dropdown
+            $("#categorySelect").val(currentCategory);
             loadProducts(currentCategory, 1, currentSearch, currentOrder);
         });
 
@@ -74,8 +75,7 @@ include 'views/admin/viewCreatTest.php';
         $(document).on("click", ".page-link", function (e) {
             e.preventDefault();
             let pagenum = $(this).data("page");
-            // Update URL with the new page
-            updateUrlParams({ pagenum: pagenum, category: currentCategory, search: currentSearch, order: currentOrder });
+            updateUrlParams({ pagenum, category: currentCategory, search: currentSearch, order: currentOrder });
             loadProducts(currentCategory, pagenum, currentSearch, currentOrder);
         });
 
@@ -89,19 +89,17 @@ include 'views/admin/viewCreatTest.php';
             loadProducts(currentCategory, 1, currentSearch, currentOrder);
         });
 
-
         $(document).on("change", ".form-check-input", function () {
             let questionId = $(this).data("id");
             if ($(this).is(":checked")) {
                 selectedQuestionIds.add(questionId);
             } else {
-                $('#selectedCount span').text(0);
                 selectedQuestionIds.delete(questionId);
             }
-            let selectedCount = selectedQuestionIds.size;
-            $('#selectedCount span').text(selectedCount);
+            $('#selectedCount span').text(selectedQuestionIds.size);
         });
-        // Gửi bài kiểm tra vào database
+
+        // Form submission: create test
         $("#createTestForm").submit(function (e) {
             e.preventDefault();
             const h = String(document.getElementById("hours").value).padStart(2, '0');
@@ -112,6 +110,7 @@ include 'views/admin/viewCreatTest.php';
             let testTime = `${h}:${m}:${s}`;
             let testCategory = $("#categorySelect").val();
             const userId = <?= isset($_SESSION['user_id']) ? json_encode($_SESSION['user_id']) : 'null' ?>;
+
             if (!testName || !testTime || selectedQuestionIds.size === 0) {
                 console.log(testCategory);
                 console.log(testName);
@@ -121,7 +120,7 @@ include 'views/admin/viewCreatTest.php';
                 alert("Please fill in all fields and select at least one question.");
                 return;
             }
-            
+
             $.ajax({
                 url: "models/insertTest.php",
                 type: "POST",
@@ -136,31 +135,26 @@ include 'views/admin/viewCreatTest.php';
                     alert(response);
                     selectedQuestionIds.clear();
                     $("#createTestForm")[0].reset(); 
+                    $('#selectedCount span').text(0);
+                    loadProducts(currentCategory, 1, currentSearch, currentOrder);
                 }
             });
         });
-        loadProducts(currentCategory);
+
+        loadProducts(currentCategory); // Initial load
     });
 
-
+    // Local filtering for a simple list (unrelated to pagination)
     function searchFunction() {
         let input = document.getElementById("searchInput").value.toLowerCase();
         let items = document.querySelectorAll("#list li");
 
         items.forEach(item => {
             if (item.textContent.toLowerCase().includes(input)) {
-                item.style.display = "block"; // Hiện mục phù hợp
+                item.style.display = "block";
             } else {
-                item.style.display = "none"; // Ẩn mục không khớp
+                item.style.display = "none";
             }
         });
     }
-    $(document).on('change', '.form-check-input', function(){
-        let selectedCount = $('.form-check-input:checked').length;
-        $('#selectedCount span').text(selectedCount);
-    });
-
-
 </script>
-
-

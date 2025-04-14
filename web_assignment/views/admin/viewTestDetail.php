@@ -76,8 +76,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Question ${startIndex + index + 1}</h5>
                                 <p class="card-text">${q.question_text}</p>
-                                ${q.picture_link ? `<img src="${q.picture_link}" class="card-img-top img-fluid w-25 my-2" alt="Question Image">` : ''}
-                                <ul class="list-group">
+                                    ${q.picture_link && q.picture_link !== "none" ? `<img src="${q.picture_link}" class="card-img-top img-fluid w-25 my-2" alt="Question Image">` : ''}                                <ul class="list-group">
                                     ${getOptionHtml('A', q.option_a, correctAnswer)}
                                     ${getOptionHtml('B', q.option_b, correctAnswer)}
                                     ${getOptionHtml('C', q.option_c, correctAnswer)}

@@ -129,16 +129,18 @@
         currentQuestionIndex++;
         renderQuestion(currentQuestionIndex);
     } else {
-        alert("You have completed the test!");
-        $.ajax({
-            url: "models/endTest.php",
-            type: "GET",
-            data: { result_id: resultId },
-            complete: function () {
-                window.location.href = `index.php?page=result&result_id=${resultId}`;
-            }
-        });
-        console.log("Kết quả:", selectedAnswers);
+        // Confirm submission if it's the last question
+        if (confirm("Are you sure you want to submit the test?")) {
+            $.ajax({
+                url: "models/endTest.php",
+                type: "GET",
+                data: { result_id: resultId },
+                complete: function () {
+                    window.location.href = `index.php?page=result&result_id=${resultId}`;
+                }
+            });
+            console.log("Kết quả:", selectedAnswers);
+        }
     }
 });
 
