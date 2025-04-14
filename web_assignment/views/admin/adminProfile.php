@@ -9,9 +9,6 @@ if (session_status() === PHP_SESSION_NONE) {
         <link rel="stylesheet" href="./css/dialog.css">
         <link rel="stylesheet" href="./css/auth.css">
         <link rel="stylesheet" href="./css/account.css">
-
-
-
         <title>Admin panel</title>
     </head>
 
