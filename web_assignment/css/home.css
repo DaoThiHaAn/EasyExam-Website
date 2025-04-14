@@ -40,12 +40,16 @@
     color: white;
     font-weight: bold;
     border-radius: 5px;
-    padding: 0.4rem 0.6rem;
+    padding: 0.5rem 0.6rem;
     line-height: 25px; 
     display: inline-flex;
     align-items: center; 
     justify-content: center; 
     font-size: 18px;
+}
+
+.logout {
+	margin-left: 30px !important;
 }
 
 .navbar li a.btn:hover, .logout:hover {
@@ -77,6 +81,7 @@
 
 .navbar-nav .nav-link:hover {
     transform: scale(1.15);
+	color: #6052ff !important;
 }
 
 .navbar-nav .nav-link.active {
@@ -199,10 +204,11 @@ footer{
     color: #8d8ba7;
 	padding: 20px;
 	font-size: 17px !important;
+	
 }
 
 footer h5{
-    color: black;
+    color: rgb(50, 50, 50);
 }
 
 .footer h5 {

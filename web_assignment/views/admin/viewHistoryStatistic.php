@@ -23,7 +23,7 @@ $test = $test->fetch_array();
 <?php include __DIR__."/../../include/navbar.php"; ?>
 <div class="history-container mt-4">
     <div class="text-center mb-4">
-        <h2 class="header display-6 fw-bold mb-4">Exam History</h2>
+        <h2 class="header display-6 fw-bold mb-4">Test History</h2>
         <h3 class="tfw-semibold mb-3">Test Name: <?php echo htmlspecialchars($test['test_name']); ?></h3>
         <h4 class="text-muted mb-5">Test ID: <?php echo htmlspecialchars($test['test_id']); ?></h4>
     </div>
@@ -63,7 +63,7 @@ $test = $test->fetch_array();
     <?php endif; ?>
 </div>
 
-<div class="container mt-5 mb-5">
+    <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h3 class="text-center">Score Chart</h3>
@@ -71,7 +71,7 @@ $test = $test->fetch_array();
                 <canvas id="scoreChart"></canvas>
             </div>
         </div>
-</div>
+    </div>
 <?php include __DIR__."/../../include/footer.php"; ?>
 </body>
 </html>
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data: {
             labels: <?php echo $usernamesJson; ?>, 
             datasets: [{
-                label: "Số lượng người",
+                label: "Number of examinees",
                 data: <?php echo $scoresJson; ?>, // Điểm số tương ứng
                 backgroundColor: "rgba(54, 162, 235, 0.5)", // Màu cột
                 borderColor: "rgba(54, 162, 235, 1)", // Màu viền
@@ -100,7 +100,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     beginAtZero: true,
                     ticks: {
                       stepSize: 1,  // Đặt bước nhảy giữa các giá trị trên trục Y là 1
-                    }        
+                    },
+                         
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: "Score"
+                    }
                 }
             }
         }

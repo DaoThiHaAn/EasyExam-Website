@@ -485,7 +485,7 @@ include 'views/admin/viewadminedit.php';
         // Xóa danh mục
         $(document).on("click", ".remove-category", function () {
             let categoryName = $(this).data("category");
-            if (confirm("Bạn có chắc muốn xóa danh mục này?")) {
+            if (confirm("Are you sure to delete this category?")) {
                 $.post("models/removeCategory.php", { name: categoryName }, function (response) {
                     alert(response);
                     location.reload();

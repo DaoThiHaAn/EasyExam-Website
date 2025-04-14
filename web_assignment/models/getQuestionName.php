@@ -59,19 +59,32 @@ $testResult = $conn->query($testQuery);
 $testsHTML = '';
 if ($testResult->num_rows > 0) {
     while ($test = $testResult->fetch_assoc()) {
+        // check if that user has taken the test before
+        $query = "SELECT COUNT(*) AS total 
+        FROM results as r JOIN users as u ON r.user_id = u.user_id 
+        WHERE r.test_id = {$test['test_id']}";
+        $attempt = $conn->query($query)->fetch_assoc()['total'];
+        $takenBadge = '';
+        if ($attempt) {
+            $takenBadge = '<span class="taken-badge badge bg-success ms-2">
+            <i class="fa-solid fa-sm fa-check-circle me-2"></i>Taken
+            </span>';
+        }
+
+
         $testsHTML .= '
             <div class="test-card card shadow-sm border-0">
                 <div class="card-body">
-                    <h5 class="card-title">Category: ' . $test['test_category'] . '</h5>
-                    <p class="card-text">Test Name: ' . htmlspecialchars($test['test_name']) . '</p>
+                    <h4 class="card-title mb-3">
+                        Test Name: ' . htmlspecialchars($test['test_name']) . $takenBadge . '
+                    </h4>                    
+                    <h5 class="card-text">Category: ' . $test['test_category'] . '</h5>
                     <p class="card-text">Number of Questions: ' . htmlspecialchars($test['count']) . '</p>
                     <p class="card-text">
                         Duration <span><i class="fa-solid fa-hourglass"></i></span>
                          :  ' . htmlspecialchars($test['test_time']) . '
                     </p>
-                    <button class="btn mt-2 btn-primary view-test-btn"
-                    data-id="' . htmlspecialchars($test['test_id']) . '"
-                    >View</button>
+                    <button class="btn mt-2 btn-primary view-test-btn" data-id="' . htmlspecialchars($test['test_id']) . '">View</button>
 
                 </div>
             </div>

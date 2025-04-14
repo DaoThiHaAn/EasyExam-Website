@@ -1,5 +1,5 @@
 <?php include "models/getResultUser.php"; ?>
-<html>
+<html lang="en">
 <head>
 <?php include __DIR__."/../include/head.php"; ?>
 <link rel="stylesheet" href="./css/testReview.css">
@@ -30,9 +30,9 @@
         <div id="question-table-container"></div>
 
         <div class="d-flex justify-content-between align-items-center mt-3">
-            <button id="prevPage" class="btn btn-secondary">⬅️ Previous</button>
+            <button id="prevPage" class="btn page-btn">⬅️ Previous</button>
             <span id="pageInfo"></span>
-            <button id="nextPage" class="btn btn-secondary">Next ➡️</button>
+            <button id="nextPage" class="btn page-btn">Next ➡️</button>
         </div>
     </div>
 

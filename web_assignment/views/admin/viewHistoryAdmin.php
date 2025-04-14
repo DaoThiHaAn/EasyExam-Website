@@ -20,7 +20,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <body>
     <?php include __DIR__."/../../include/navbar.php"; ?>
     <main class="container mt-4 mb-5">        
-        <h4 class="header-text text-center mb-5">Preview Test</h4>
+        <h4 class="header-text text-center mb-5">Test Statistics</h4>
 
     <section class="sort-filter mb-4 p-3 rounded-4 shadow-sm row g-3 align-items-end">
         <!-- Category Select -->
@@ -29,7 +29,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <select id="categorySelect" class="form-select">
                 <option value="0">All</option>
                 <?php 
-                include __DIR__."/../models/getCategories.php"; 
+                include __DIR__."/../../models/getCategories.php"; 
                 foreach ($categories as $category): ?>
                     <option value="<?= htmlspecialchars($category['category_name']) ?>">
                         <?= htmlspecialchars($category['category_name']) ?>
@@ -60,21 +60,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </section>
 
-            <!-- <h4>Chọn bài kiểm tra</h4>
-                <div class="mb-3">
-                    <label for="testCategory" class="form-label">Chủ đề:</label>
-                    <select id="categorySelect" class="form-select">
-                        <option value="0">Tất cả</option>
-            <?php 
-            include("models/getCategories.php"); 
-            foreach ($categories as $category): ?>
-                <option value="<?= htmlspecialchars($category['category_name']) ?>">
-                    <?= htmlspecialchars($category['category_name']) ?>
-                </option>
-            <?php endforeach; ?>
-                            </select>
-                        </div> -->
-
+            
         
         <div id="questionList" >
             <div class="card-list">
@@ -93,7 +79,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content bg-light">
       <div class="modal-header">
-        <h5 class="modal-title" id="testPreviewModalLabel">Preview Test</h5>
+        <h5 class="modal-title" id="testPreviewModalLabel">Test Statistics</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="testPreviewContent">
@@ -101,37 +87,16 @@ if (session_status() === PHP_SESSION_NONE) {
       </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="startTestBtn" data-role="<?= isset($_SESSION['role']) ? $_SESSION['role'] : '' ?>">
-                Start
+                Start Mock Test
             </button>
         </div>
     </div>
   </div>
 </section>
 
-<!-- Modal xác nhận đăng nhập -->
-<section class="modal fade" id="signInConfirmModal" tabindex="-1" aria-labelledby="signInConfirmModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content confirm-modal">
-            <div class="modal-header">
-                <h5 class="modal-title" id="signInConfirmModalLabel">Sign In Required</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                You need to sign in to start the test. Do you want to sign in now?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn cancel-btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="confirmSignInBtn">Sign In</button>
-            </div>
-        </div>
-    </div>
-</section>
-
 <?php include __DIR__."/../../include/footer.php"; ?>
 </body>
 </html>
-
-
 
 
 
@@ -144,7 +109,7 @@ $(document).ready(function () {
 
     function loadProducts(category = 0, page = 1, search = "", order = "") {
         $.ajax({
-            url: "models/getQuestionName.php",
+            url: "models/getQuestionName_admin.php",
             type: "GET",
             data: { category: category, page: page, search: search, order: order },
             success: function (response) {

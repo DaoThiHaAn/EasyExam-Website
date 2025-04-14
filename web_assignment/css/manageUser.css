@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.btn-primary {
+    background-color: #4A3AFF !important;
+}
+
+.btn-primary:hover {
+    background-color: #968cfe !important;
+    border-color: #968cfe !important;
+}
+
+.header-text {
+    color: #5D5A88 !important;
+    font-weight: bolder;
+}

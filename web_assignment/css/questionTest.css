@@ -8,6 +8,14 @@ main {
     border: 0.5px solid #c7c4f0 !important;
 }
 
+.card-title {
+    color: #4A3AFF !important;
+}
+
+.card-text {
+    color: #575757 !important;
+}
+
 .header-text {
     font-size: 1.5em !important;
     font-weight: bold !important;
@@ -82,7 +90,7 @@ main {
 }
 
 .btn-primary:hover {
-    background-color: rgb(163, 160, 210) !important;
+    background-color: rgb(109, 99, 242) !important;
     border-color: rgb(163, 160, 210) !important;
 }
 
@@ -100,6 +108,15 @@ main {
 .cancel-btn:hover {
     background-color: #d3d3d3 !important;
     border-color: #d3d3d3 !important;
+}
+
+.taken-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 10px !important;
+    font-weight: normal !important;
+    padding: 2px 4px;           
+    width: auto;              
 }
 
 @media screen and (max-width: 768px) {

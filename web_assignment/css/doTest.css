@@ -16,4 +16,11 @@
 
 .header-box > * {
     width: max-content;
+    color: #5D5A88 !important;
+}
+
+.alert-info {
+    width: fit-content !important;
+    margin: auto !important;
+    margin-bottom: 15px !important;
 }

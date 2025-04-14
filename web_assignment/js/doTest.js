@@ -129,7 +129,7 @@
         currentQuestionIndex++;
         renderQuestion(currentQuestionIndex);
     } else {
-        alert("Bạn đã hoàn thành bài kiểm tra!");
+        alert("You have completed the test!");
         $.ajax({
             url: "models/endTest.php",
             type: "GET",

@@ -118,7 +118,7 @@ include 'views/admin/viewCreatTest.php';
                 console.log(testTime);
                 console.log(userId);
                 console.log(selectedQuestionIds)
-                alert("Vui lòng nhập đủ thông tin và chọn ít nhất một câu hỏi!");
+                alert("Please fill in all fields and select at least one question.");
                 return;
             }
             

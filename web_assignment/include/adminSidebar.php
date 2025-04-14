@@ -27,6 +27,14 @@
         <span class="ms-2">Create Tests</span>
       </a>
     </li>
+
+    <li class="nav-item">
+      <a class="nav-link <?= ($page === 'admin_create_test') ? 'active' : '' ?>" href="index.php?page=manage_user">
+        <i class="fa-solid fa-gear"></i>
+        <span class="ms-2">Manage Users</span>
+      </a>
+    </li>
+
     <li class="nav-item">
       <a class="nav-link <?= ($page === 'profile') ? 'active' : '' ?>" href="index.php?page=adminProfile">
         <i class="fa-solid fa-user"></i>

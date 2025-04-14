@@ -10,7 +10,7 @@
                 <hr class="dark">
                 <h5>Working Hours</h5>
                 <hr class="dark">
-                <p>Mondays-Friday: 8am - 5pm</p>
+                <p>Monday-Friday: 8am - 5pm</p>
                 <p>Weekend: 8am - 12pm</p>
             </div>
             <div class="col-md-5">

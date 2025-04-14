@@ -1,14 +1,14 @@
 .back-btn {
-    border: solid 1px #4A3AFF;
-    color: #4A3AFF;
+    border: solid 1px #7f62dc;
+    color: #7f62dc;
     font-weight: bold;
-    background-color: rgb(229, 229, 229);
+    background-color: rgb(233, 226, 240);
 }
 
 .back-btn:hover {
-    background-color: #d6d3ec;
-    color:#9b93f7;
-    border-color: #9b93f7;
+    background-color: #f7f0fe !important;
+    color:#7f62dc;
+    border-color: #7f62dc;
 }
 
 .score-div {
@@ -18,4 +18,16 @@
     width: fit-content;
     padding: 5px 10px;
     margin: 10px auto;
+}
+
+.page-btn {
+    background-color: #ddf0ff !important;
+    color: #34a2d1 !important;
+    border: 1px solid #34a2d1 !important;
+}
+
+.page-btn:hover {
+    background-color: #67cbf67d !important;
+    color: #34a2d1 !important;
+    border: 1px solid #34a2d1 !important;
 }

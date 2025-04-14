@@ -233,8 +233,8 @@
     border-radius: 50%;
     overflow: hidden;
 }
-.last-test,
-.ads-banner{
+
+.last-test, .ads-banner{
     background: #fff;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -273,8 +273,7 @@
     margin-top: 10px;
 }
 
-.test-tables th,
-.test-tables td {
+.test-tables th,.test-tables td {
     padding: 12px 15px;
     text-align: center; /* Căn giữa tất cả nội dung trong bảng */
     border-bottom: 1px solid #ddd;
@@ -285,24 +284,39 @@
     font-weight: bold;
 }
 
+.test-tables thead td {
+    color: #4A3AFF;
+}
+
 .test-tables tbody tr:hover {
     background-color: #f0f0f0;
     cursor: pointer;
 }
 
 .test-tables td i {
-    padding: 8px;
-    background-color: #32bea6;
+    padding: 7px;
     border-radius: 50%;
     color: #fff;
     cursor: pointer;
     display: inline-block;
     text-align: center; /* Căn giữa icon */
-    line-height: 24px;  /* Đảm bảo icon được căn giữa trong vòng tròn */
+    line-height: 20px;  /* Đảm bảo icon được căn giữa trong vòng tròn */
 }
 
-.test-tables td i:hover {
-    background-color: #27a79b;
+.eye-class {
+    background-color: #32bea6;
+}
+
+.trash-class {
+    background-color: #ff4d4d;
+}
+
+.eye-class:hover {
+    background-color: #85d2ca;
+}
+
+.trash-class:hover {
+    background-color: #ff9999;
 }
 
 .test-tables td {

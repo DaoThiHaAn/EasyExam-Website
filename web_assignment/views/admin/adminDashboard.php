@@ -10,7 +10,7 @@
 		<?php include __DIR__.'/../../include/adminSidebar.php'; ?>
 
 		
-        <div class="main" id="mainContent">
+        <section class="main" id="mainContent">
 			<div class="title">
 				<h1>Welcome back,</h1>
 				<h2><i><?= $_SESSION['username'] ?></i></h2>
@@ -22,31 +22,44 @@
                     	<h2>Available Tests</h2>
                     	<a href="index.php?page=admin_history" class="btn">View All</a>
                 	</div>
-					<table class="test-tables">
-						<thead>
-							<td>Test</td>
-							<td>Category</td>
-							<td>Created By</td>
-							<td>View</td>
-						</thead>
-						<tbody>
-						<?php foreach ($tests as $test): ?>
-							<tr>
-								<td><?= htmlspecialchars($test['test_name']) ?></td>
-								<td><?= htmlspecialchars($test['test_category']) ?></td>
-								<td><?= htmlspecialchars($test['created_by']) ?></td>
-								<td>
-									<a href="index.php?page=admin_statistic&test_id=<?= $test['test_id'] ?>" title="View">
-										<i class="far fa-eye"></i>
-									</a>
-								</td>
-							</tr>
-						<?php endforeach; ?>
-						</tbody>
-					</table>
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered table-hover test-tables">
+							<thead>
+								<tr>
+									<td>Test</td>
+									<td>Category</td>
+									<td>Created By</td>
+									<td>Time Created</td>
+									<td>View</td>
+									<td>Delete</td>
+								</tr>
+							</thead>
+							<tbody>
+							<?php foreach ($tests as $test): ?>
+								<tr>
+									<td><?= htmlspecialchars($test['test_name']) ?></td>
+									<td><?= htmlspecialchars($test['test_category']) ?></td>
+									<td><?= htmlspecialchars($test['username']) ?></td>
+									<td><?= htmlspecialchars($test['time_create']) ?></td>
+									<td>
+										<a href="index.php?page=admin_statistic&test_id=<?= $test['test_id'] ?>" title="View">
+											<i class="far fa-eye eye-class"></i>
+										</a>
+									</td>
+									<td>
+										<a href="index.php?page=admin_delete_test&test_id=<?= $test['test_id'] ?>" 
+											title="Delete" onclick="return confirm('Are you sure you want to delete this test?');">
+											<i class="fa-solid fa-trash trash-class"></i>
+										</a>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>
 				</div>
             </div>
-        </div>
+		</section>
     </main>
 
 	<script src="./js/adminDashboard.js"></script>

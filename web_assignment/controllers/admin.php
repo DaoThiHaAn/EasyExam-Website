@@ -14,7 +14,10 @@ if ($conn->connect_error) {
 }
 
 $tests = [];
-$sql = "SELECT test_id, test_name, test_category, created_by FROM tests ORDER BY test_id DESC LIMIT 10";
+$sql = "SELECT test_id, test_name, test_category, time_create, u.username
+FROM tests as t
+JOIN users as u ON t.created_by = u.user_id
+ORDER BY time_create DESC LIMIT 20";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 

@@ -84,7 +84,7 @@ if ($questionResult->num_rows > 0) {
                
 
                 <div class="card-body pb-4">
-                    <h5 class="card-title">' . htmlspecialchars($question['question_text']) . '</h5>
+                    <h5 class="card-title mb-4">' . htmlspecialchars($question['question_text']) . '</h5>
                      ' . $imageElement . '
                     <p class="card-text">A: ' . htmlspecialchars($question['option_a']) . '</p>
                     <p class="card-text">B: ' . htmlspecialchars($question['option_b']) . '</p>

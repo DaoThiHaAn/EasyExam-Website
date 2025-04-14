@@ -45,7 +45,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="col-md-5">
             <label for="searchInput" class="form-label d-block">Search:</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="searchInput" placeholder="Searching...">
+                <input type="text" class="form-control" id="searchInput" placeholder="Searching test name...">
                 <span class="input-group-text">
                     <i class="fas fa-search"></i>
                 </span>
