@@ -119,6 +119,31 @@ main {
     width: auto;              
 }
 
+.eye-class {
+    color: #32bea6;
+    margin: 0 10px;
+}
+
+.eye-class:hover {
+    color: #85d2ca;
+}
+
+.trash-class {
+    color: #ff4d4d;
+    margin: 0 5px;
+}
+
+.trash-class:hover {
+    color: #ff7f7f;
+}
+
+.card-body a {
+    text-decoration: none;
+}
+.card-body a i {
+    cursor: pointer !important;
+}
+
 @media screen and (max-width: 768px) {
     body {
         font-size: 15px;

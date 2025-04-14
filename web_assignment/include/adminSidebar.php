@@ -1,5 +1,5 @@
 <nav class="navbar bg-light sidebar d-flex flex-column">
-  <a class="navbar-brand mb-4" href="index.php?page=admin">
+  <a class="navbar-brand mb-4" href="index.php?page=home">
     <img src="./images/logo.jpg" alt="Logo" class="rounded-circle logo">
   </a>
   <ul class="navbar-nav flex-column w-100 text-center">

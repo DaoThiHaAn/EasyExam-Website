@@ -66,7 +66,7 @@
                     ${q.picture_link !== 'none' ? `<img src="${q.picture_link}" class="img-fluid rounded" style="max-height: 220px;">` : ''}
                 </div>
                 <div class="col-md-8">
-                    <h5 class="mb-2">Câu ${index + 1 + answeredCount}/${totalQuestions}</h5>
+                    <h5 class="mb-2">Question ${index + 1 + answeredCount}/${totalQuestions}</h5>
                     <p class="mb-4">${q.question_text}</p>
                     
                     <form id="answer-form">
@@ -76,7 +76,7 @@
                         ${renderOption('D', q.option_d, selected)}
 
                         <button type="button" class="btn btn-primary mt-4 px-4" id="next-btn">
-                            ${index === questionsData.length - 1 ? 'Nộp bài' : 'Câu tiếp'}
+                            ${index === questionsData.length - 1 ? 'Submit' : 'Next Question'}
                         </button>
                     </form>
                 </div>
@@ -154,7 +154,7 @@
             timerElement.textContent = `${m}:${s}`;
             if (timeLeft <= 0) {
                 clearInterval(countdown);
-                alert("Hết giờ làm bài!");
+                alert("Time UpUp!");
                 
                 // Duyệt qua toàn bộ câu hỏi chưa có câu trả lời
                 questionsData.forEach(q => {

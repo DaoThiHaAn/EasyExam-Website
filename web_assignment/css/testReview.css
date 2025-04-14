@@ -31,3 +31,15 @@
     color: #34a2d1 !important;
     border: 1px solid #34a2d1 !important;
 }
+
+.header-text {
+    color: #5D5A88 !important;
+    font-weight: bolder;
+    background-color: transparent !important;
+}
+
+.meta-card {
+    width: fit-content !important;
+    padding: 20px;
+    margin: auto;
+}

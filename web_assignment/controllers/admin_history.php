@@ -54,7 +54,7 @@ include __DIR__.'/../views/admin/viewHistoryAdmin.php';
         loadProducts(currentCategory);
     });
 
-    $(document).on("click", ".view-test-btn", function () {
+    $(document).on("click", ".analyze-btn", function () {
         let testId = $(this).data("id");
         if (testId) {
             window.location.href = "index.php?page=admin_statistic&test_id=" + testId;

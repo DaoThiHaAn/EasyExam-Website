@@ -20,6 +20,7 @@
         <h2 class="mb-4" style="color: #5D5A88">🎉 Result of your Test 🎉</h2>
         <h3 class="mb-4">Test Name: <?= htmlspecialchars($test_name) ?></h3>
         <p class="score-div"><strong>Score:</strong> <?= $score ?> / <?= $total_questions ?></p>
+        <p><strong>Examinee:</strong> <?= $_SESSION['username'] ?> </p>
         <p><strong>Start time:</strong> <?= $start_time ?> </p>
         <p><strong>Finished time:</strong> <?= $end_time ?> </p>
         <p><strong>Duration:</strong> <?= $duration_formatted ?> </p>

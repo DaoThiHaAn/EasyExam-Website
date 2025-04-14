@@ -23,13 +23,6 @@ if (!isset($_SESSION['start_time'])) {
         }
     };
     </script>
-    <script type="text/javascript" async
-    src="https://polyfill.io/v3/polyfill.min.js?features=es6">
-    </script>
-    <script type="text/javascript" async
-    id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>

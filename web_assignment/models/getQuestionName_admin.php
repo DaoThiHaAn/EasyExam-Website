@@ -70,7 +70,10 @@ if ($testResult->num_rows > 0) {
                     <p class="card-text">
                         Duration <span><i class="fa-solid fa-hourglass"></i></span> :  ' . htmlspecialchars($test['test_time']) . '
                     </p>
-                    <button class="btn mt-2 btn-primary view-test-btn" data-id="' . htmlspecialchars($test['test_id']) . '">View</button>
+                    <button class="btn mt-2 btn-primary analyze-btn" data-id="' . htmlspecialchars($test['test_id']) . '">Analyze</button>
+                    <a href="index.php?page=admin_view_test&test_id=' . htmlspecialchars($test['test_id']) . '" title="View details">
+                        <i class="fa-solid fa-lg fa-eye eye-class"></i>
+                    </a>
                     <a class="btn" href="index.php?page=admin_delete_test&test_id=' . htmlspecialchars($test['test_id']) . '" 
                         title="Delete" onclick="return confirm(\'Are you sure you want to delete this test?\');">
                         <i class="fa-solid fa-lg fa-trash trash-class"></i>
