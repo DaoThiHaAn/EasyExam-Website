@@ -53,7 +53,7 @@ $totaltests = $totalRow['total'];
 $totalPages = ceil($totaltests / $limit);
 
 // Lấy danh sách câu hỏi
-$testQuery = "SELECT test_name, `count`,test_time,test_category,test_id, FROM tests $where $orderQuery LIMIT $limit OFFSET $offset";
+$testQuery = "SELECT test_name, `count`,test_time,test_category,test_id FROM tests $where $orderQuery LIMIT $limit OFFSET $offset";
 $testResult = $conn->query($testQuery);
 
 $testsHTML = '';

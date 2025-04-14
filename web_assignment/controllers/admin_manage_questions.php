@@ -480,16 +480,16 @@ include 'views/admin/viewadminedit.php';
         });
 
 
-
-
         // Xóa danh mục
         $(document).on("click", ".remove-category", function () {
             let categoryName = $(this).data("category");
             if (confirm("Are you sure to delete this category?")) {
-                $.post("models/removeCategory.php", { name: categoryName }, function (response) {
-                    alert(response);
+                $.post("models/removeCategory.php",
+                { name: categoryName },
+                function (response) {
+                    alert(response.message);
                     location.reload();
-                });
+                }, "json");
             }
         });
 

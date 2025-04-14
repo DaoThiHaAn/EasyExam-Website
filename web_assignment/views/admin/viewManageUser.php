@@ -11,9 +11,9 @@
             <h2 class="mb-4 text-center header-text">Manage Users</h2>
             
             <!-- Filter by role -->
-            <form method="GET" action="index.php?page=admin_manage_users" class="mb-4">
+            <form method="GET" action="index.php?page=manage_user" class="mb-4">
                 <!-- Use the same page name for consistency -->
-                <input type="hidden" name="page" value="admin_manage_users">
+                <input type="hidden" name="page" value="manage_user">
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <select name="role_filter" class="form-select">
@@ -71,7 +71,7 @@
                     for($i = 1; $i <= $totalPages; $i++){
                         $active = ($i === $currentPage) ? "active" : "";
                         echo "<li class='page-item $active d-flex justify-content-center align-items-center'>
-                                <a class='page-link' href='index.php?page=admin_manage_users&p=$i$roleParam'>$i</a>
+                                <a class='page-link' href='index.php?page=manage_user&p=$i$roleParam'>$i</a>
                               </li>";
                     }
                     ?>

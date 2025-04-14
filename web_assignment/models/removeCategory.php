@@ -9,22 +9,22 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $name = isset($_POST['name']) ? (int)$_POST['name'] : 0;
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
     
     if ($name > 0) {
         $sql = "DELETE FROM categories WHERE category_name = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $name);
+        $stmt->bind_param("s", $name);
         
         if ($stmt->execute()) {
-            echo json_encode(["success" => true, "message" => "Xóa chủ đề thành công."]);
+            echo json_encode(["success" => true, "message" => "Delete Category successfully!."]);
         } else {
-            echo json_encode(["success" => false, "message" => "Lỗi khi xóa chủ đề."]);
+            echo json_encode(["success" => false, "message" => "Error deleting category!."]);
         }
         
         $stmt->close();
     } else {
-        echo json_encode(["success" => false, "message" => "Tên chủ đề không hợp lệ."]);
+        echo json_encode(["success" => false, "message" => "Category name is invalid!."]);
     }
 }
 $conn->close();

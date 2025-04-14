@@ -14,9 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $category);
     if ($stmt->execute()) {
-        echo json_encode(["success" => true, "message" => "Thêm danh mục thành công."]);
+        echo json_encode(["success" => true, "message" => "Incsert new category successfully"]);
     } else {
-        echo json_encode(["success" => false, "message" => "Lỗi khi xóa danh mục."]);
+        echo json_encode(["success" => false, "message" => "Error when deleting category"]);
     }
     
     $stmt->close();
