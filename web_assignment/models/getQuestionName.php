@@ -1,8 +1,7 @@
 <?php
-
-
-
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -59,16 +58,18 @@ $testResult = $conn->query($testQuery);
 $testsHTML = '';
 if ($testResult->num_rows > 0) {
     while ($test = $testResult->fetch_assoc()) {
-        // check if that user has taken the test before
-        $query = "SELECT COUNT(*) AS total 
-        FROM results as r JOIN users as u ON r.user_id = u.user_id 
-        WHERE r.test_id = {$test['test_id']}";
-        $attempt = $conn->query($query)->fetch_assoc()['total'];
         $takenBadge = '';
-        if ($attempt) {
-            $takenBadge = '<span class="taken-badge badge bg-success ms-2">
-            <i class="fa-solid fa-sm fa-check-circle me-2"></i>Taken
-            </span>';
+        if ($_SESSION['role'] == "user") {
+            // check if that user has taken the test before
+            $query = "SELECT COUNT(*) AS total 
+            FROM results as r JOIN users as u ON r.user_id = u.user_id 
+            WHERE r.test_id = {$test['test_id']}";
+            $attempt = $conn->query($query)->fetch_assoc()['total'];
+            if ($attempt) {
+                $takenBadge = '<span class="taken-badge badge bg-success ms-2">'.
+                '<i class="fa-solid fa-sm fa-check-circle me-2"></i>Taken'.
+                '</span>';
+            }
         }
 
 
@@ -79,9 +80,10 @@ if ($testResult->num_rows > 0) {
                     '. htmlspecialchars($test['test_name']) . $takenBadge . '
                     </h4>                    
                     <h5 class="card-text"> 📚 '. $test['test_category'] . '</h5>
-                    <p class="card-text">
-                        <span><i class="fa-solid fa-hourglass"></i></span> ' . htmlspecialchars($test['test_time']) . '
-                    </p>
+                    <p class="card-text">'.
+                        '<span><i class="fa-solid fa-hourglass"></i></span> '.
+                         htmlspecialchars($test['test_time']) .
+                    '</p>
                     <p class="card-text">Number of Questions: ' . htmlspecialchars($test['count']) . '</p>
                     <button class="btn mt-2 btn-primary view-test-btn" data-id="' . htmlspecialchars($test['test_id']) . '">View</button>
 

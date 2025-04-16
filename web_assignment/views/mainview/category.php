@@ -42,10 +42,12 @@
         </div>
     </div>
 
+    <?php if ($_SESSION['role'] !== 'admin') {?>
     <div class="viewall d-flex justify-content-center align-items-center mt-4">
         <a href="index.php?page=preview_test">
             View all tests
             <i class="fa-solid fa-arrow-right"></i>
         </a>
     </div>
+    <?php }?>
 </section>
