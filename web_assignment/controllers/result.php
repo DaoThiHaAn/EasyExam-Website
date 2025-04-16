@@ -10,7 +10,8 @@ if ($conn->connect_error) die("Kết nối thất bại: " . $conn->connect_erro
 if (!isset($_GET['result_id']) || intval($_GET['result_id']) <= 0) {
     if (isset($_GET['test_id'])) {
         $test_id = intval($_GET['test_id']);
-        $user_id = intval($_SESSION['user_id']);
+        // admin passes username
+        $user_id = $_SESSION['role'] == "user" ? intval($_SESSION['user_id']) : intval($_GET['user_id']);
 
         $findResultSql = "SELECT result_id FROM results WHERE test_id = ? AND user_id = ?";
         $stmt = $conn->prepare($findResultSql);

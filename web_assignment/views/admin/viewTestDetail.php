@@ -14,7 +14,7 @@
     <body>
         <?php include __DIR__."/../../include/navbar.php"; ?>
         
-        <main class="container my-4">
+        <main class="bg-light p-5">
             <!-- Test Information Card -->
             <div class="card mb-4 shadow-sm meta-card">
                 <div class="card-header header-text text-center">

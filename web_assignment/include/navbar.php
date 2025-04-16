@@ -41,10 +41,15 @@
         </div>
 
         <!-- ✅ usermode được đưa ra ngoài phần collapse -->
-        <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'guest') { ?>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] !== 'guest') {
+            if ($_SESSION['role'] == 'admin')
+                $img_src = './images/admin-icon.png';
+            else
+                $img_src = './images/profile.png';
+            ?>
             <div class="d-flex align-items-center ms-3">
                 <a class="nav-link account d-flex align-items-center" href="<?= ($_SESSION['role'] == 'user') ? 'index.php?page=profile' : 'index.php?page=adminProfile'; ?>">
-                    <img src="./images/profile.png" alt="User icon" width="25" height="25" class="me-2">
+                    <img src="<?= $img_src ?>" alt="User icon" width="25" height="25" class="me-2">
                     <?= $_SESSION['username'] ?>
                 </a>
                 <a class="btn btn-primary ms-2 logout" href="index.php?page=logout">Log Out</a>

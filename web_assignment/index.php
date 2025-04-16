@@ -39,7 +39,7 @@ if (in_array($page, $adminPages) && (!isset($_SESSION['role']) || $_SESSION['rol
 }
 
 $userPages = ['user', 'result','profile','doTest','user_history']; // Các trang chỉ dành cho user
-if (in_array($page, $userPages) && (!isset($_SESSION['role']) || $_SESSION['role'] !== 'user')) {
+if (in_array($page, $userPages) && (!isset($_SESSION['role']) || $_SESSION['role'] == 'guest')) {
     die("Access Denied. You do not have permission to access this page.");
 }
 

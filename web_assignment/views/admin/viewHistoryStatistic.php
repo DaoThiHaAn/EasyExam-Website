@@ -39,7 +39,7 @@ $test = $test->fetch_array();
                     <th>Start Time</th>
                     <th>End Time</th>
                     <th>Duration</th>
-                    
+                    <th>Attempt Detail</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,6 +53,10 @@ $test = $test->fetch_array();
                         <td><?php echo htmlspecialchars($row['start_time']); ?></td>
                         <td><?php echo htmlspecialchars($row['end_time']); ?></td>
                         <td><?php echo htmlspecialchars(gmdate("H:i:s",$row['duration'])); ?></td>
+                        <td><a href="index.php?page=result&result_id=<?php echo htmlspecialchars($row['result_id']); ?>" title="View Result">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                    </td>
 
                     </tr>
                 <?php endforeach; ?>

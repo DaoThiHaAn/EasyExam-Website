@@ -1,4 +1,15 @@
-<?php include "models/getResultUser.php"; ?>
+<?php 
+include "models/getResultUser.php";
+$examinee = $_SESSION['username'];
+if ($_SESSION['role'] == "admin") {
+    $query = "SELECT username FROM results as r
+              JOIN users as u ON r.user_id = u.user_id
+              WHERE r.result_id = " . $_GET['result_id'] . ";";
+    $examinee =$mydatabase->query($query)->fetch_assoc()['username'];   
+}
+
+
+?>
 <html lang="en">
 <head>
 <?php include __DIR__."/../include/head.php"; ?>
@@ -17,10 +28,10 @@
 <?php include __DIR__.'/../include/navbar.php'; ?>
 <section class="container mt-3">
     <div class="text-center">
-        <h2 class="mb-4" style="color: #5D5A88">🎉 Result of your Test 🎉</h2>
+        <h2 class="mb-4" style="color: #5D5A88">🎉 Result of Test 🎉</h2>
         <h3 class="mb-4">Test Name: <?= htmlspecialchars($test_name) ?></h3>
         <p class="score-div"><strong>Score:</strong> <?= $score ?> / <?= $total_questions ?></p>
-        <p><strong>Examinee:</strong> <?= $_SESSION['username'] ?> </p>
+        <p><strong>Examinee:</strong> <?= $examinee ?> </p>
         <p><strong>Start time:</strong> <?= $start_time ?> </p>
         <p><strong>Finished time:</strong> <?= $end_time ?> </p>
         <p><strong>Duration:</strong> <?= $duration_formatted ?> </p>
@@ -37,7 +48,15 @@
         </div>
     </div>
 
-    <button class="btn back-btn mt-4 mb-5" onclick="window.location.href='index.php?page=profile&tab=test_history'">🔙 Back to Test History</button>
+    <?php if ($_SESSION['role'] == 'user') {?>
+        <button class="btn back-btn mt-4 mb-5" onclick="window.location.href='index.php?page=profile&tab=test_history'">
+            🔙 Back to Test History
+        </button>
+    <?php } else {?>
+        <button class="btn back-btn mt-4 mb-5" onclick="window.location.href='index.php?page=admin_history'">
+            🔙 Back to Test List
+        </button>
+    <?php }?>
 </section>
 
 <?php include __DIR__.'/../include/footer.php'; ?>

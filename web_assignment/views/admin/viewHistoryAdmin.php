@@ -20,7 +20,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <body>
     <?php include __DIR__."/../../include/navbar.php"; ?>
     <main class="container mt-4 mb-5">        
-        <h4 class="header-text text-center mb-5">Test Statistics</h4>
+        <h3 class="header-text text-center mb-5">Test Statistics</h3>
 
     <section class="sort-filter mb-4 p-3 rounded-4 shadow-sm row g-3 align-items-end">
         <!-- Category Select -->

@@ -76,14 +76,13 @@ if ($testResult->num_rows > 0) {
             <div class="test-card card shadow-sm border-0">
                 <div class="card-body">
                     <h4 class="card-title mb-3">
-                        Test Name: ' . htmlspecialchars($test['test_name']) . $takenBadge . '
+                    '. htmlspecialchars($test['test_name']) . $takenBadge . '
                     </h4>                    
-                    <h5 class="card-text">Category: ' . $test['test_category'] . '</h5>
-                    <p class="card-text">Number of Questions: ' . htmlspecialchars($test['count']) . '</p>
+                    <h5 class="card-text"> 📚 '. $test['test_category'] . '</h5>
                     <p class="card-text">
-                        Duration <span><i class="fa-solid fa-hourglass"></i></span>
-                         :  ' . htmlspecialchars($test['test_time']) . '
+                        <span><i class="fa-solid fa-hourglass"></i></span> ' . htmlspecialchars($test['test_time']) . '
                     </p>
+                    <p class="card-text">Number of Questions: ' . htmlspecialchars($test['count']) . '</p>
                     <button class="btn mt-2 btn-primary view-test-btn" data-id="' . htmlspecialchars($test['test_id']) . '">View</button>
 
                 </div>
