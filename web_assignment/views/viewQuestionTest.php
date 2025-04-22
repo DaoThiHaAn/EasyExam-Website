@@ -159,12 +159,8 @@ if (session_status() === PHP_SESSION_NONE) {
         }
     $(document).ready(function () {
 
-        
-
         // Gán giá trị vào dropdown category nếu có
         $("#categorySelect").val(currentCategory);
-
-        
 
         // Khi chọn lại category thì thay đổi cả URL (không reload)
         $("#categorySelect").change(function () {
@@ -188,9 +184,9 @@ if (session_status() === PHP_SESSION_NONE) {
             loadProducts(currentCategory, 1, currentSearch, currentOrder);
         });
 
-
         loadProducts(currentCategory);
     });
+    
     let currentTestId = null;
     $(document).on("click", ".view-test-btn", function () {
         let testId = $(this).data("id");

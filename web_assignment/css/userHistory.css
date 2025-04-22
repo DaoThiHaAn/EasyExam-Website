@@ -16,3 +16,12 @@
     color:#9b93f7;
     border-color: #9b93f7;
 }
+
+.page-link {
+    background-color: #4A3AFF !important;
+    border: none !important;
+}
+
+.page-link:hover {
+    background-color: #9b93f7 !important;
+}

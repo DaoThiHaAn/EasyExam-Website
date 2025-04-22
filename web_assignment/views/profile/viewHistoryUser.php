@@ -26,7 +26,7 @@ include __DIR__.'/../../models/getHistoryUser.php';
                     </thead>
                     <tbody>
                         <?php 
-                        $i = 1;
+                        $i = $offset + 1; // Adjust numbering based on the current page
                         foreach ($history as $entry): ?>
                             <tr>
                                 <td><?= $i++ ?></td>
@@ -55,7 +55,29 @@ include __DIR__.'/../../models/getHistoryUser.php';
             </div>
         </div>
     </div>
+
+    <!-- Pagination -->
+    <section>
+        <ul class="pagination justify-content-center mt-4">
+            <?php if ($page > 1): ?>
+                <li class="page-item">
+                    <a class="page-link" href="index.php?page=viewHistoryUser&page_num=<?= $page - 1 ?>">Previous</a>
+                </li>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                    <a class="page-link" href="index.php?page=viewHistoryUser&page_num=<?= $i ?>"><?= $i ?></a>
+                </li>
+            <?php endfor; ?>
+
+            <?php if ($page < $totalPages): ?>
+                <li class="page-item">
+                    <a class="page-link" href="index.php?page=viewHistoryUser&page_num=<?= $page + 1 ?>">Next</a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </section>
 <?php endif; ?>
 
 
-            
