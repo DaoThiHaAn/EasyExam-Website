@@ -93,7 +93,7 @@ if ($testResult->num_rows > 0) {
     }
 } else {
 
-    $testsHTML = '<p>No matching tests found!.</p>';
+    $testsHTML = '<p>No matching tests found!</p>';
 }
 
 $paginationHTML = '<nav><ul class="pagination justify-content-center mt-4">';

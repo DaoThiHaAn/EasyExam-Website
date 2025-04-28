@@ -95,13 +95,14 @@ if (session_status() === PHP_SESSION_NONE) {
 <section class="modal fade" id="testPreviewModal" tabindex="-1" aria-labelledby="testPreviewModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content bg-light">
-      <div class="modal-header">
-        <h5 class="modal-title" id="testPreviewModalLabel">Preview Test</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="testPreviewContent">
-        <!-- Nội dung câu hỏi sẽ được chèn vào đây -->
-      </div>
+        <div class="modal-header">
+            <h5 class="modal-title" id="testPreviewModalLabel">Preview Test</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="testPreviewContent">
+            <!-- Nội dung câu hỏi sẽ được chèn vào đây -->
+        </div>
+        <p class="text-center text-muted mt-3">You can preview only at most 3 first questions!</p>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="startTestBtn" data-role="<?= isset($_SESSION['role']) ? $_SESSION['role'] : '' ?>">
                 Start
